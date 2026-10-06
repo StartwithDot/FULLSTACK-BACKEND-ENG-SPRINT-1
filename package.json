@@ -1,0 +1,44 @@
+{
+  "name": "backend-engineering-sprint-1",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.17.0 <23"
+  },
+  "scripts": {
+    "migrate:practice": "node --env-file-if-exists=.env --import tsx fixtures/migrate.ts practice",
+    "db:migrate": "node --env-file-if-exists=.env --import tsx fixtures/migrate.ts product",
+    "setup:check": "node scripts/check-setup.mjs",
+    "verify:curriculum": "node scripts/check-curriculum.mjs",
+    "practice": "tsx",
+    "test:practice": "node --import tsx --test",
+    "dev:api": "node --env-file-if-exists=.env --import tsx shared/api/src/server.ts",
+    "dev:web": "vite --config shared/web/vite.config.ts",
+    "typecheck": "tsc -p tsconfig.node.json && tsc -p shared/web/tsconfig.json && tsc -p tsconfig.students.json && tsc -p fixtures/web-starter/tsconfig.json",
+    "test": "node scripts/run-tests.mjs",
+    "build": "tsc -p shared/api/tsconfig.build.json && tsc -p shared/web/tsconfig.json && vite build --config shared/web/vite.config.ts",
+    "db:check": "node --env-file-if-exists=.env scripts/check-db.mjs",
+    "test:db": "node --env-file-if-exists=.env scripts/run-db-tests.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run verify:curriculum && npm run format:check && npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "prettier": "3.9.9",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vite": "7.3.7"
+  },
+  "dependencies": {
+    "fastify": "5.12.5",
+    "pg": "8.23.1",
+    "@fastify/secure-session": "8.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  }
+}

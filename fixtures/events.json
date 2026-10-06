@@ -1,0 +1,44 @@
+[
+  {
+    "provider_event_id": "sandbox_1",
+    "event_type": "payment.captured",
+    "amount_minor": 15000,
+    "currency": "INR",
+    "occurred_at": "2026-01-01T10:00:00.000Z"
+  },
+  {
+    "provider_event_id": "sandbox_2",
+    "event_type": "payment.failed",
+    "amount_minor": 22000,
+    "currency": "INR",
+    "occurred_at": "2026-01-02T10:00:00.000Z"
+  },
+  {
+    "provider_event_id": "sandbox_3",
+    "event_type": "refund.processed",
+    "amount_minor": 5000,
+    "currency": "INR",
+    "occurred_at": "2026-01-03T10:00:00.000Z"
+  },
+  {
+    "provider_event_id": "sandbox_4",
+    "event_type": "payment.captured",
+    "amount_minor": 12000,
+    "currency": "INR",
+    "occurred_at": "2026-01-04T10:00:00.000Z"
+  },
+  {
+    "provider_event_id": "sandbox_5",
+    "event_type": "payment.failed",
+    "amount_minor": 45000,
+    "currency": "INR",
+    "occurred_at": "2026-01-05T10:00:00.000Z"
+  },
+  {
+    "provider_event_id": "sandbox_6",
+    "event_type": "refund.processed",
+    "amount_minor": 7000,
+    "currency": "INR",
+    "occurred_at": "2026-01-06T10:00:00.000Z"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "merchantdesk-practice-client",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -p tsconfig.json && vite build"
+  }
+}

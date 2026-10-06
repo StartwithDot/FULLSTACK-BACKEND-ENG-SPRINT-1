@@ -1,0 +1,172 @@
+[
+  {
+    "name": "valid capture",
+    "accepted": true,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "valid failure",
+    "accepted": true,
+    "input": {
+      "provider_event_id": "sandbox_2",
+      "event_type": "payment.failed",
+      "amount_minor": 22000,
+      "currency": "INR",
+      "occurred_at": "2026-01-02T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "valid refund",
+    "accepted": true,
+    "input": {
+      "provider_event_id": "sandbox_3",
+      "event_type": "refund.processed",
+      "amount_minor": 5000,
+      "currency": "INR",
+      "occurred_at": "2026-01-03T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "numeric string",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": "15000",
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "fraction",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000.5,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "zero",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 0,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "too large",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 100000001,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "unknown kind",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.unknown",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "wrong currency",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "USD",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "impossible date",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-02-31T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "non canonical timestamp",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00Z"
+    }
+  },
+  {
+    "name": "blank identity",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "forged merchant",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z",
+      "merchant_id": "merchant-two"
+    }
+  },
+  {
+    "name": "null body",
+    "accepted": false,
+    "input": null
+  },
+  {
+    "name": "missing currency",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "sandbox_1",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  },
+  {
+    "name": "identity too long",
+    "accepted": false,
+    "input": {
+      "provider_event_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "event_type": "payment.captured",
+      "amount_minor": 15000,
+      "currency": "INR",
+      "occurred_at": "2026-01-01T10:00:00.000Z"
+    }
+  }
+]

@@ -1,0 +1,915 @@
+{
+  "name": "Backend-Engineering-Sprint-1",
+  "product": "MerchantDesk",
+  "weeks": [
+    {
+      "number": 1,
+      "title": "Meet the merchant and make the first change",
+      "phase": "Understand",
+      "need": "The client needs one place to inspect sandbox payment events, but the request is not yet a specification.",
+      "before": "No programming experience is assumed. Follow docs/02-windows-setup.md sections 1-3; do not install PostgreSQL or study React yet.",
+      "milestone": "Agreed client brief",
+      "outcome": "A reviewed brief, a safe event summary, and one authored pull request.",
+      "shared": "shared/delivery/brief.md and shared/delivery/context.md",
+      "tasks": [
+        {
+          "id": "E01.1",
+          "title": "Write the brief and context map",
+          "minutes": 50,
+          "path": "week-01/discovery/brief.md",
+          "learn": "User stories, scope and a one-page context diagram",
+          "resources": ["http"],
+          "instructions": "Read the client story. Write the user, three useful actions, non-goals, five open questions and what a successful demo would show. Add a small Mermaid map of simulator, API, database and merchant interface. Keep implementation choices provisional.",
+          "proof": "A peer can explain the same user and V1 boundary from your brief. The map labels the API as the data/security boundary.",
+          "trap": "A list of technologies is not a client brief."
+        },
+        {
+          "id": "T01.1",
+          "title": "Run a safe event inspector",
+          "minutes": 65,
+          "path": "week-01/typescript/inspector.ts",
+          "learn": "Values, variables, objects, console output and the TS/JS relationship",
+          "resources": ["ts", "js"],
+          "instructions": "After npm ci, use the fixture at fixtures/events.json. Begin with one object and print its event ID, kind and amount_minor. Add a function that returns that summary. Record the run command in NOTES.md next to the script. Do not print credentials or customer data.",
+          "proof": "npm run practice -- students/BE01/week-01/typescript/inspector.ts runs after replacing BE01. Explain that Node executes JavaScript and TypeScript checks types before execution.",
+          "trap": "You do not need arrays, async, React or a database to finish this first program."
+        },
+        {
+          "id": "E01.2",
+          "title": "Complete the Git and review loop",
+          "minutes": 35,
+          "path": "week-01/review.md",
+          "learn": "Diffs, branches, commits and pull requests",
+          "resources": ["git", "review"],
+          "instructions": "Use a task branch, inspect git diff, make focused task-ID commits and open one weekly PR. Review an assigned peer's change and record its link. Before publication, use local branches and review the diff together; record the commit instead of inventing a PR URL.",
+          "proof": "Your author identity is correct, changed files stay in your folder, and the review explains one choice.",
+          "trap": "Run Git commands from the repository root, not C:\\Users\\josep."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["E", "T"]
+    },
+    {
+      "number": 2,
+      "title": "Represent events and ask the first SQL questions",
+      "phase": "Understand",
+      "need": "The merchant needs event counts, while fields such as amounts and event kinds need an agreed meaning.",
+      "before": "Bring Week 1's inspector. Install PostgreSQL using setup sections 4-5 and load fixtures/practice.sql into your personal practice database. The fixture is supplied now, not promised by a later week.",
+      "outcome": "Typed event data, real SQL answers and an explicit input contract.",
+      "shared": "shared/delivery/event-contract.md and shared/database/practice-notes.md",
+      "tasks": [
+        {
+          "id": "T02.1",
+          "title": "Work with a typed event list",
+          "minutes": 50,
+          "path": "week-02/typescript/event-list.ts",
+          "learn": "Primitive types, arrays, object types, branches and iteration",
+          "resources": ["types", "js"],
+          "instructions": "Define an event type using the actual fixture fields. Iterate over several events, select captured payments and count them. Compare a loop with filter. Explain one case where a missing value differs from zero.",
+          "proof": "The captured count matches the fixture and an intentionally wrong assignment is rejected by TypeScript.",
+          "trap": "Type annotations do not validate JSON received from another process."
+        },
+        {
+          "id": "D01.1",
+          "title": "Load and query the practice database",
+          "minutes": 65,
+          "path": "week-02/sql/first-queries.sql",
+          "learn": "Tables, rows, SELECT, WHERE, ORDER BY and GROUP BY",
+          "resources": ["pg"],
+          "instructions": "Load the supplied SQL using the setup guide, then write queries for captured events, merchant totals and the latest events. Put answers and commands in NOTES.md. This is a personal practice database, not the shared final schema.",
+          "proof": "Queries return real rows from the supplied fixture, including both merchants. State what one row means.",
+          "trap": "Install time belongs inside this task's budget. Ask for setup help instead of borrowing a personal database."
+        },
+        {
+          "id": "E02.1",
+          "title": "Agree the event field rules",
+          "minutes": 35,
+          "path": "week-02/design/event-contract.md",
+          "learn": "Runtime input, integer minor units, timestamps and non-goals",
+          "resources": ["types"],
+          "instructions": "Use docs/01-project-brief.md and fixtures/cases.json to specify required fields, bounds, allowed event kinds and the duplicate key. Explain why merchant identity will eventually come from authentication, not an arbitrary body field.",
+          "proof": "Every fixture case has an expected accept/reject result and a reason. Money is expressed in integer paise, not floating point rupees.",
+          "trap": "Sandbox event data is not authorization and this course does not process payments."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["T", "D", "E"]
+    },
+    {
+      "number": 3,
+      "title": "Functions, relational boundaries and first tests",
+      "phase": "Practice",
+      "need": "The event contract must become reusable checks, and events must remain attached to a real merchant.",
+      "before": "Bring the Week 2 contract and a loaded practice database. Use the fixture cases instead of searching for external data.",
+      "outcome": "A reusable validation exercise, a relational model and tests that detect a bug.",
+      "shared": "shared/delivery/data-model.md and shared/api/test/contract.test.ts",
+      "tasks": [
+        {
+          "id": "T03.1",
+          "title": "Validate a small unknown input",
+          "minutes": 55,
+          "path": "week-03/typescript/validate-event.ts",
+          "learn": "Functions, unknown, narrowing, return values and modules",
+          "resources": ["functions", "narrow", "modules"],
+          "instructions": "Write a pure function that accepts unknown and returns either a small valid event or explicit issues. Handle null, wrong kinds and non-integer/out-of-range amounts. Keep validation separate from printing. Focus on the agreed subset; full route JSON Schema comes in Week 5.",
+          "proof": "Valid fixture records pass and bad amount, missing ID, null and unknown kind produce errors without a crash.",
+          "trap": "An as Event assertion changes the compiler's view, not the received data."
+        },
+        {
+          "id": "D02.1",
+          "title": "Model and test the relationship",
+          "minutes": 50,
+          "path": "week-03/sql/relationships.sql",
+          "learn": "Primary keys, foreign keys, joins, required fields and constraints",
+          "resources": ["constraints", "pg"],
+          "instructions": "Draw merchants and events with one-row meanings. In a new schema inside your practice database, create a small pair of related tables and try a broken foreign key and a duplicate primary key. Join events to merchant names and explain unmatched rows.",
+          "proof": "The database rejects the deliberate relational mistakes; your join result is explained in NOTES.md.",
+          "trap": "Do not edit or destroy another student's data. The final shared migration is written in Week 6."
+        },
+        {
+          "id": "E03.1",
+          "title": "Prove and break the validator",
+          "minutes": 45,
+          "path": "week-03/typescript/validate-event.test.ts",
+          "learn": "node:test, assertions, test cases and focused debugging",
+          "resources": ["nodeTest"],
+          "instructions": "Add at least four tests, including one bad input. Run npm run test:practice -- followed by this test path. Deliberately remove a check, observe a failing test and restore it. Link one peer review.",
+          "proof": "A recorded test fails for the introduced bug and passes after restoration.",
+          "trap": "A green run without an assertion does not prove validation."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["T", "D", "E"]
+    },
+    {
+      "number": 4,
+      "title": "Cross the HTTP boundary without losing the model",
+      "phase": "Practice",
+      "need": "Another program must send or request events without sharing the API's memory.",
+      "before": "Read the HTTP contract in docs/04-api-and-security-contract.md. PostgreSQL practice and TypeScript exercises continue; do not replace them with a standalone framework course.",
+      "outcome": "A tiny HTTP application, observable async behavior and an API plan.",
+      "shared": "shared/api/src/app.ts and shared/delivery/api-contract.md",
+      "tasks": [
+        {
+          "id": "B01.1",
+          "title": "Build and inspect a tiny Fastify API",
+          "minutes": 60,
+          "path": "week-04/api/app.ts",
+          "learn": "HTTP methods, paths, headers, status, JSON and app factories",
+          "resources": ["http", "fastify", "ftest"],
+          "instructions": "Start an individual exported createApp factory, using the supplied app/listener split as a scaffold. Add an in-memory GET /api/events returning a few synthetic records. Put the listener in server.ts. Send a manual request with curl.exe and add one app.inject test in app.test.ts. Bind the listener to loopback. Preserve the shared createApp export when promoting routes.",
+          "proof": "An annotated exchange names method, URL, response status and JSON. The test runs without opening a network port.",
+          "trap": "The in-memory lab is local and temporary. It has no authentication yet and must not be publicly exposed."
+        },
+        {
+          "id": "T04.1",
+          "title": "Observe async work and failure",
+          "minutes": 50,
+          "path": "week-04/typescript/async-reader.ts",
+          "learn": "Promises, await, try/catch, JSON parsing and cleanup",
+          "resources": ["async"],
+          "instructions": "Read the supplied fixture with node:fs/promises. Compare an awaited result with the Promise itself. Handle a missing file and malformed JSON deliberately; pass parsed data through the earlier checks. Explain why async is not a new thread for each request.",
+          "proof": "Successful and failing runs terminate with useful, safe messages. A parsing failure is not mistaken for an empty event list.",
+          "trap": "Catch only what you can explain; do not catch every error and return success."
+        },
+        {
+          "id": "E04.1",
+          "title": "Review the API and schema together",
+          "minutes": 40,
+          "path": "week-04/design/api-contract.md",
+          "learn": "Request/response contracts and design trade-offs",
+          "resources": ["http"],
+          "instructions": "Specify the initial POST/list/detail routes, field rules, error shape and the future owner filter. Draw the request path and name the limits of the in-memory version. Compare the plan with Week 3's relational model.",
+          "proof": "A peer can name what belongs in HTTP, validation and persistence, and what is missing before public deployment.",
+          "trap": "Do not invent queue, Rust service or microservice boundaries in Sprint 1."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["B", "T", "E"]
+    },
+    {
+      "number": 5,
+      "title": "Receive one event end to end",
+      "phase": "Practice",
+      "need": "The merchant must accept a useful event and reject malformed input consistently.",
+      "before": "Bring the app factory and field contract. Use Fastify's built-in JSON Schema; do not introduce a second validation framework.",
+      "milestone": "First local event flow",
+      "outcome": "A simulator request reaches the API and is visible through a list endpoint.",
+      "shared": "shared/api/src/routes/events.ts, shared/simulator/send-event.ts and shared/delivery/first-flow.md",
+      "tasks": [
+        {
+          "id": "B02.1",
+          "title": "Add the validated event route",
+          "minutes": 65,
+          "path": "week-05/api/events.ts",
+          "learn": "JSON Schema, request limits, safe errors and in-memory persistence",
+          "resources": ["validation", "ftest"],
+          "instructions": "Add POST /api/events and GET /api/events to your lab. Validate the full body shape and enforce the agreed amount bounds and event kinds. Configure coercion/removal deliberately so bad types and unexpected owner fields are rejected rather than silently rewritten. Add good and bad injection tests.",
+          "proof": "A valid event gets 201 and can be listed; invalid type, missing ID and oversized body get deliberate failures. Database persistence and auth are still later tasks.",
+          "trap": "Keep the lab loopback-only. A typed request body alone is not runtime validation."
+        },
+        {
+          "id": "C01.1",
+          "title": "Write the first API consumer",
+          "minutes": 45,
+          "path": "week-05/client/send-event.ts",
+          "learn": "Node fetch, request bodies, HTTP errors and client/server separation",
+          "resources": ["fetch"],
+          "instructions": "Send one fixture event to the local API with Node fetch, inspect response.ok and parse the response safely. Try one malformed request. This is an API consumer script, not React yet.",
+          "proof": "The script records the accepted ID and reports a non-2xx as a failure instead of claiming success.",
+          "trap": "Fetch can resolve successfully when HTTP returns 400; a network rejection is a different failure."
+        },
+        {
+          "id": "E05.1",
+          "title": "Witness the flow and update the diagram",
+          "minutes": 40,
+          "path": "week-05/delivery/first-flow.md",
+          "learn": "Reproduction, diagrams and restart limitations",
+          "resources": ["review"],
+          "instructions": "Have a peer run the simulator -> API -> list flow. Record actual commands, one invalid request and what disappears after restart. Update the architecture with actual local ports.",
+          "proof": "A person outside the build pair reproduces the flow and can explain the persistence gap.",
+          "trap": "Do not claim durable acceptance or a production webhook service from this demonstration."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["B", "C", "E"]
+    },
+    {
+      "number": 6,
+      "title": "Make accepted events survive restart",
+      "phase": "Build",
+      "need": "Restarting the API currently loses all accepted events.",
+      "before": "Bring the agreed model and HTTP tests. Use a disposable test database for tests, not your practice database. Follow the migration-runner interface in shared/database/README.md.",
+      "milestone": "Durable event flow",
+      "outcome": "A fresh migration, parameterized storage and a restart proof.",
+      "shared": "shared/database/migrations/, shared/api/src/repository.ts and shared/api/test/persistence.db.test.ts",
+      "tasks": [
+        {
+          "id": "D03.1",
+          "title": "Write and apply the first migration",
+          "minutes": 55,
+          "path": "week-06/database/migrations/001-events.sql",
+          "learn": "DDL, constraints, timestamps and forward migrations",
+          "resources": ["pg", "constraints"],
+          "instructions": "Create merchants and payment_events from the agreed field contract, including a foreign key, amount check and timestamp columns. Use the supplied runner via npm.cmd run migrate:practice -- students/BE01/week-06/database/migrations, replacing BE01. Read fixtures/migration-runner.ts and its support tests, then explain ordered version tracking, one-client transactions and repeat-run behavior. Write schema-relative SQL without transaction commands; do not invent runner plumbing in this task.",
+          "proof": "An empty test database migrates; invalid amount/merchant writes fail; a second runner invocation preserves rows.",
+          "trap": "Do not edit a migration after the shared cohort has applied it. Add a new migration."
+        },
+        {
+          "id": "B03.1",
+          "title": "Connect a pooled repository",
+          "minutes": 60,
+          "path": "week-06/api/repository.ts",
+          "learn": "pg pooling, parameterized queries, dependency injection and shutdown",
+          "resources": ["queries", "pool", "transactions"],
+          "instructions": "Replace the in-memory storage through a small injected repository. Use bounded Pool configuration, parameter placeholders and finally-based client release. Keep app construction separate from listening and close the pool on shutdown.",
+          "proof": "An event can be inserted and read through the HTTP API without SQL string interpolation or a leaked client.",
+          "trap": "A transaction must stay on one checked-out client, not separate pool.query calls."
+        },
+        {
+          "id": "E06.1",
+          "title": "Prove persistence and isolate the test",
+          "minutes": 35,
+          "path": "week-06/api/persistence.db.test.ts",
+          "learn": "Database integration tests and restart evidence",
+          "resources": ["ftest"],
+          "instructions": "Use a dedicated test database/schema. Accept one event, close/rebuild the app, and read it back. Record the commands. Demonstrate that a failing database write is not reported as accepted.",
+          "proof": "A real database-backed event survives app restart; test cleanup affects only the disposable test namespace.",
+          "trap": "A mocked repository test cannot establish PostgreSQL persistence."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["D", "B", "E"]
+    },
+    {
+      "number": 7,
+      "title": "Handle repetition and bound the list",
+      "phase": "Build",
+      "need": "Repeated event IDs can create duplicate records, and an unbounded list can grow without limit.",
+      "before": "Keep the app local-only until the auth and ownership work is complete. Use PostgreSQL uniqueness, not a SELECT-before-INSERT assumption.",
+      "outcome": "Database-backed duplicate behavior and a stable, bounded listing contract.",
+      "shared": "shared/database/migrations/002-event-identity.sql, shared/api/src/repository.ts and shared/api/src/routes/events.ts",
+      "tasks": [
+        {
+          "id": "D04.1",
+          "title": "Protect event identity in the database",
+          "minutes": 55,
+          "path": "week-07/database/deduplication.sql",
+          "learn": "Composite uniqueness, ON CONFLICT and concurrent requests",
+          "resources": ["constraints", "conflict"],
+          "instructions": "Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together.",
+          "proof": "Sequential and overlapping identical requests leave one row; the same ID with changed agreed fields returns 409 and keeps the first record.",
+          "trap": "An in-process Set or pre-insert check alone does not protect concurrent database writes."
+        },
+        {
+          "id": "T05.1",
+          "title": "Give repository outcomes explicit types",
+          "minutes": 45,
+          "path": "week-07/typescript/repository-results.ts",
+          "learn": "Unions, interfaces, Map/Set basics and simple complexity reasoning",
+          "resources": ["narrow", "types"],
+          "instructions": "Model created, repeated and conflict results as a union. Show one pure HTTP mapping function and explain where a Map can help a practice lookup and where the database must remain authoritative. Add tests for each outcome.",
+          "proof": "The caller must handle every result variant. A note compares linear array lookup with a keyed lookup without invented benchmark claims.",
+          "trap": "Do not add advanced generics or classes without a useful substitution boundary."
+        },
+        {
+          "id": "B04.1",
+          "title": "Add filtering and stable pagination",
+          "minutes": 50,
+          "path": "week-07/api/list-events.ts",
+          "learn": "Query validation, LIMIT/OFFSET and deterministic ordering",
+          "resources": ["limit", "queries"],
+          "instructions": "Implement kind filtering plus limit 1-50 and non-negative offset. Order by received_at DESC, id DESC. Include merchant scope in the repository interface even though real principals arrive next. Test ties, no results and invalid bounds.",
+          "proof": "Repeated reads of unchanged data have stable order and no page exceeds 50 rows.",
+          "trap": "Offset pagination can shift when new rows arrive; document that limitation instead of promising snapshot paging."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["D", "T", "B"]
+    },
+    {
+      "number": 8,
+      "title": "Authenticate a merchant operator",
+      "phase": "Build",
+      "need": "The API must distinguish a signed-in operator from an anonymous request before exposing merchant data.",
+      "before": "Use the supplied password helper in fixtures/passwords.ts and @fastify/secure-session. Read the exact session settings in docs/04-api-and-security-contract.md. Do not design custom encryption or teach JWT and sessions together.",
+      "outcome": "Login, expiry and logout with protected API access.",
+      "shared": "shared/database/migrations/003-operators.sql, shared/api/src/auth.ts and shared/delivery/security-model.md",
+      "tasks": [
+        {
+          "id": "B05.1",
+          "title": "Add seeded operator login",
+          "minutes": 60,
+          "path": "week-08/api/login.ts",
+          "learn": "Authentication, password hashing, seeded accounts and generic failures",
+          "resources": ["crypto", "session"],
+          "instructions": "Add operators related to merchants and a local seed script that reads demo passwords from ignored environment variables. Use the supplied async password helper rather than plaintext storage. Validate and bound login fields, query by email with parameters, and return the same failure message for absent users and wrong passwords. No signup/reset feature is required.",
+          "proof": "Correct credentials succeed; wrong credentials fail; the database and responses contain no plaintext password. Test the helper with good and bad passwords.",
+          "trap": "Passwords, session keys and hashes do not belong in logs or PR screenshots."
+        },
+        {
+          "id": "B05.2",
+          "title": "Use an expiring cookie session",
+          "minutes": 50,
+          "path": "week-08/api/session.ts",
+          "learn": "HttpOnly cookies, plugin expiry, logout and server identity",
+          "resources": ["session"],
+          "instructions": "Use a generated 32-byte key from ignored configuration, explicit one-hour plugin expiry and matching cookie lifetime. Set HttpOnly and SameSite=Lax. Secure is false only for loopback HTTP development; HTTPS requires Secure. Regenerate at login, delete at logout, and protect event routes with a server-resolved operator.",
+          "proof": "Missing/tampered/expired cookies fail; logout clears the browser session; a server-side check enforces expiry.",
+          "trap": "Stateless logout clears this browser's cookie but does not revoke a stolen copy before expiry. Name that limitation."
+        },
+        {
+          "id": "E07.1",
+          "title": "Review the auth and browser boundary",
+          "minutes": 40,
+          "path": "week-08/security/auth-model.md",
+          "learn": "Authentication versus authorization, CSRF and local-only operation",
+          "resources": ["csrf"],
+          "instructions": "Draw where credentials, encrypted cookie and merchant ID live. For login/logout/event writes require application/json and an exact allowed Origin including scheme/host/port; test missing or foreign origins. Node simulator and injection tests must deliberately send the agreed Origin. Do not rely on SameSite alone.",
+          "proof": "A peer checks anonymous, bad-origin and expiry cases and finds no credential exposure.",
+          "trap": "An Origin check is a browser CSRF control, not authentication for arbitrary scripts. Do not enable wildcard credentialed CORS."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["B", "E"]
+    },
+    {
+      "number": 9,
+      "title": "Enforce merchant ownership across every route",
+      "phase": "Build",
+      "need": "A signed-in operator must not see or write another merchant's events.",
+      "before": "Seed two synthetic merchants and one operator for each. Derive merchant ownership from a verified session and current database operator, never from the request body or URL alone.",
+      "milestone": "Protected merchant flow",
+      "outcome": "A working authenticated event API with cross-merchant rejection.",
+      "shared": "shared/api/src/routes/events.ts, shared/api/test/ownership.db.test.ts and shared/simulator/send-event.ts",
+      "tasks": [
+        {
+          "id": "D05.1",
+          "title": "Scope every database operation",
+          "minutes": 55,
+          "path": "week-09/database/owned-queries.sql",
+          "learn": "Owner-filtered SQL, join boundaries and foreign keys",
+          "resources": ["queries", "pg"],
+          "instructions": "Apply merchant_id filters to list, detail, conflict lookup and insertion paths. Resolve an operator's current merchant in the database. For an existing event owned by another merchant return the same 404 as a missing ID. Keep duplicate keys merchant-scoped.",
+          "proof": "Merchant A cannot read B's event even with its exact ID. Each merchant may use the same provider_event_id independently.",
+          "trap": "A hidden UI button is not database authorization."
+        },
+        {
+          "id": "B06.1",
+          "title": "Test the protected API end to end",
+          "minutes": 60,
+          "path": "week-09/api/ownership.db.test.ts",
+          "learn": "Authentication hooks, authorization and negative integration tests",
+          "resources": ["ftest"],
+          "instructions": "Test anonymous list/read/write, A reading B's known ID, a forged merchant_id field, and a valid A write. Reject the injected owner field through body validation. Cover login/logout origins and safe error bodies. Use the existing app factory and a disposable database.",
+          "proof": "401 for anonymous, 404 for another owner's detail, 400 for forged body field, and successful own-merchant requests. No test relies only on UI behavior.",
+          "trap": "Ensure Fastify does not silently strip merchant_id and make the forged request look accepted."
+        },
+        {
+          "id": "C02.1",
+          "title": "Update the simulator to authenticate",
+          "minutes": 35,
+          "path": "week-09/client/send-authenticated.ts",
+          "learn": "Cookie-aware HTTP consumers and safe configuration",
+          "resources": ["fetch"],
+          "instructions": "Read disposable credentials from local environment variables, log in, reuse the returned cookie on one event request, and send the configured Origin. Keep passwords/cookies out of output. Do not parse combined Set-Cookie strings by splitting on commas.",
+          "proof": "The same script succeeds for its merchant and fails without the cookie. A witness reproduces the flow.",
+          "trap": "This is a sandbox API client, not a signed payment-provider webhook integration."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["D", "B", "C"]
+    },
+    {
+      "number": 10,
+      "title": "Build a small merchant interface while tightening responses",
+      "phase": "Build",
+      "need": "A merchant needs to inspect event data without typing curl commands; backend responses must stay safe.",
+      "before": "Use fixtures/web-starter/ as the individual UI scaffold, following docs/03-student-guide.md. React tasks begin with static synthetic data, while backend response work continues.",
+      "outcome": "Typed UI components and bounded safe API responses.",
+      "shared": "shared/web/src/App.tsx, shared/web/src/EventList.tsx and shared/api/src/routes/events.ts",
+      "tasks": [
+        {
+          "id": "C03.1",
+          "title": "Render a typed event list",
+          "minutes": 50,
+          "path": "week-10/client/src/EventList.tsx",
+          "learn": "JSX, typed props, lists, keys and minimal semantic markup",
+          "resources": ["react"],
+          "instructions": "Copy the supplied web scaffold into your own week-10/client once. Add an EventList component with typed props and stable event IDs as keys. Show event kind, currency, integer-derived display amount and timestamp. Use a heading and a table or accessible list.",
+          "proof": "The local UI renders two events and a meaningful empty state; a peer can explain where props come from.",
+          "trap": "React renders the interface. HTTP fetch, not React itself, transports API requests."
+        },
+        {
+          "id": "C03.2",
+          "title": "Add a small controlled filter",
+          "minutes": 45,
+          "path": "week-10/client/src/App.tsx",
+          "learn": "useState, event handlers, forms and labels",
+          "resources": ["state"],
+          "instructions": "Add a labelled kind selector and a submit/reset interaction on the static data. Keep data in the parent and explain a prop/state distinction. Use the supplied modest CSS; do not add a design system, router or global state package.",
+          "proof": "Filter/reset work and keyboard users can operate the control. No button uses a fake network success message.",
+          "trap": "Do not turn this into a frontend styling project."
+        },
+        {
+          "id": "B07.1",
+          "title": "Shape and test safe API responses",
+          "minutes": 55,
+          "path": "week-10/api/response-contract.test.ts",
+          "learn": "Response DTOs, JSON Schema and privacy boundaries",
+          "resources": ["validation", "ftest"],
+          "instructions": "Return only public event fields and the paging envelope. Add response schemas and tests proving operator password hashes, cookie values and internal SQL errors are absent. Compare the response shape with the UI props; use an explicit mapping instead of pretending DB rows are already browser models.",
+          "proof": "The JSON shape is documented and negative tests prove private fields are excluded.",
+          "trap": "A response TypeScript type does not strip private properties at runtime."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["C", "B"]
+    },
+    {
+      "number": 11,
+      "title": "Connect the interface to the protected backend",
+      "phase": "Build",
+      "need": "The interface currently shows static data and needs real authenticated event queries.",
+      "before": "Keep editing your week-10/client scaffold. Start only one UI on port 5173 and the API on 3000; Vite proxies /api to the API. The browser uses relative /api URLs.",
+      "outcome": "A signed-in merchant can inspect its own persisted events through React.",
+      "shared": "shared/web/src/api.ts, shared/web/src/App.tsx and shared/delivery/browser-flow.md",
+      "tasks": [
+        {
+          "id": "C04.1",
+          "title": "Fetch and render real events",
+          "minutes": 60,
+          "path": "week-10/client/src/api.ts",
+          "learn": "Fetch, effects, loading/error/empty states and cancellation",
+          "resources": ["fetch", "effect"],
+          "instructions": "Replace static reads with relative /api fetch calls. Check response.ok and validate the expected response shape at the client boundary. Model loading, empty, data and error states explicitly. Abort superseded requests and prevent stale results from overwriting newer filters.",
+          "proof": "The UI displays database records, reports an HTTP failure and keeps the newest filter result under a deliberate delayed response.",
+          "trap": "An effect is not a place to start unlimited requests or ignore cleanup."
+        },
+        {
+          "id": "C04.2",
+          "title": "Connect login and logout",
+          "minutes": 55,
+          "path": "week-10/client/src/App.tsx",
+          "learn": "Controlled credentials, cookie sessions and authentication UX",
+          "resources": ["state", "fetch"],
+          "instructions": "Add a small login form and logout action using the protected API. Rely on the HttpOnly cookie; do not copy tokens into localStorage. Refresh /api/me on startup, return to login on 401, and use only relative /api paths through the proxy.",
+          "proof": "Login, page refresh, expired session and logout have deliberate UI states. Another merchant never appears in the list.",
+          "trap": "A successful login response does not replace server-side authorization on later calls."
+        },
+        {
+          "id": "E08.1",
+          "title": "Witness the browser-to-database path",
+          "minutes": 35,
+          "path": "week-11/delivery/browser-flow.md",
+          "learn": "Browser network tools and end-to-end evidence",
+          "resources": ["http"],
+          "instructions": "Have a peer trace the browser request, Vite development proxy, Fastify route and PostgreSQL query. Record login, filtering, empty data and unauthorized behavior without screenshots containing credentials. Include a small sequence diagram.",
+          "proof": "A peer reproduces the flow and distinguishes UI, transport and backend authorization.",
+          "trap": "The Vite proxy is development plumbing, not production hosting."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["C", "E"]
+    },
+    {
+      "number": 12,
+      "title": "Consolidate correctness before adding polish",
+      "phase": "Build",
+      "need": "The happy-path demo works, but duplicates, transactions and regressions need trustworthy checks.",
+      "before": "This is a consolidation week with no new framework. Use earlier labs and their failing tests; retain all essential ownership and validation checks.",
+      "outcome": "A coherent test matrix, one exercised transaction and corrected weak cases.",
+      "shared": "shared/api/test/, shared/database/README.md and shared/delivery/test-matrix.md",
+      "tasks": [
+        {
+          "id": "D06.1",
+          "title": "Exercise rollback on one checked-out client",
+          "minutes": 50,
+          "path": "week-12/database/rollback.ts",
+          "learn": "Transactions, rollback, client release and isolated state",
+          "resources": ["transactions"],
+          "instructions": "In a disposable test namespace, perform two related writes, deliberately fail the second and prove the first was rolled back. Use one checked-out client, BEGIN/COMMIT/ROLLBACK and finally release. Explain why a single event insert does not need an artificial multi-step transaction.",
+          "proof": "The deliberate failure leaves no partial first write and the pool remains usable afterward.",
+          "trap": "Do not hold a database transaction around a network request."
+        },
+        {
+          "id": "B08.1",
+          "title": "Strengthen a weak boundary test",
+          "minutes": 60,
+          "path": "week-12/api/boundary.db.test.ts",
+          "learn": "Adversarial cases, timestamps, amount bounds and conflict semantics",
+          "resources": ["ftest", "nodeTest"],
+          "instructions": "Choose the weakest core API boundary and add a test that exposes it: amount coercion, impossible date, equal timestamp paging, changed duplicate content or cross-owner lookup. Fix the bug, then rerun the whole current suite. Improve parsing without loosening the agreed field contract.",
+          "proof": "Your added test fails before the fix and passes afterward; the existing core checks remain green.",
+          "trap": "A test relying on whichever row happens to come first is not stable."
+        },
+        {
+          "id": "E09.1",
+          "title": "Map requirements to evidence and revise",
+          "minutes": 40,
+          "path": "week-12/quality/test-matrix.md",
+          "learn": "Risk-based tests, explain-back and focused revision",
+          "resources": ["review"],
+          "instructions": "Map each V1 behavior to a unit, HTTP, real-database or browser check. Identify one missing proof, add it or explain the remaining limit. Revisit a Week 2/3 concept from memory, then correct your explanation against the code.",
+          "proof": "Every milestone behavior has a named check and your revision records a real correction.",
+          "trap": "Coverage percentages and green starter tests do not prove the completed merchant features."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["D", "B", "E"]
+    },
+    {
+      "number": 13,
+      "title": "Make failures visible and requests bounded",
+      "phase": "Deliver",
+      "need": "A slow database, bad request or expired session should produce a useful failure rather than a misleading demo.",
+      "before": "Reuse the existing suite and GitHub workflow. Do not introduce AWS, Docker, Redis or a monitoring vendor. Native Windows remains the primary run path.",
+      "outcome": "Bounded endpoints, redacted diagnostic logs and deliberate client errors.",
+      "shared": "shared/api/src/app.ts, shared/api/test/, shared/web/src/App.tsx and .github/workflows/checks.yml",
+      "tasks": [
+        {
+          "id": "B09.1",
+          "title": "Bound and diagnose the API",
+          "minutes": 60,
+          "path": "week-13/api/operation.ts",
+          "learn": "Body/query limits, timeouts, readiness and structured logs",
+          "resources": ["logs", "pool"],
+          "instructions": "Enforce the 16 KiB event body cap, bounded page/filter inputs and database connection/query timeouts. Keep liveness separate from readiness: readiness must fail when the database cannot serve a simple check. Log request ID, route, outcome and safe event ID, with cookie/auth/password/session key redaction.",
+          "proof": "Oversized body and unavailable DB have deliberate failures; a request ID traces one fault without credentials in logs.",
+          "trap": "A process being alive is not evidence that it can store events. No unbounded payload logging."
+        },
+        {
+          "id": "C05.1",
+          "title": "Make the client honest during failure",
+          "minutes": 40,
+          "path": "week-10/client/src/App.tsx",
+          "learn": "Recoverable errors, accessible feedback and duplicate-submit prevention",
+          "resources": ["react", "fetch"],
+          "instructions": "Exercise 401, validation failure, empty data and a stopped API. Preserve useful filter state, label errors, disable an in-flight action and offer a retry. Do not automatically retry event creation in a way that hides its identity.",
+          "proof": "A peer can distinguish not signed in, no matching records and a failed request; retry does not invent extra events.",
+          "trap": "Do not show a success toast before checking the response."
+        },
+        {
+          "id": "E10.1",
+          "title": "Verify the current CI gate",
+          "minutes": 50,
+          "path": "week-13/quality/ci-proof.md",
+          "learn": "Existing checks, real DB tests and Windows/Linux portability",
+          "resources": ["actions"],
+          "instructions": "Explain the committed starter jobs and extend the database suite discovery with your actual .db.test.ts tests. The existing PostgreSQL service runs practice-fixture checks; it is not proof of product migrations. Add a product migration test and demonstrate one deliberately failing check locally and, once published, on a real PR.",
+          "proof": "The required commands run from a clean install; a deliberately broken assertion/migration makes the relevant check fail.",
+          "trap": "Do not make every student add a live root workflow. Practise in your folder; only the build pair promotes the shared change."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["B", "C", "E"]
+    },
+    {
+      "number": 14,
+      "title": "Investigate, repair and rehearse a clean start",
+      "phase": "Deliver",
+      "need": "The application must be maintainable when something fails and when a different person starts it.",
+      "before": "Use a reversible failure only in disposable/local test data. The maintainer chooses a fixture or condition, not a destructive change to a real database.",
+      "outcome": "An evidence-led repair, an explained query plan and a corrected runbook.",
+      "shared": "shared/delivery/incident.md, shared/database/migrations/ and shared/delivery/runbook.md",
+      "tasks": [
+        {
+          "id": "E11.1",
+          "title": "Break, investigate and fix one failure",
+          "minutes": 60,
+          "path": "week-14/incident/postmortem.md",
+          "learn": "Evidence-led debugging and regression tests",
+          "resources": ["logs", "nodeTest"],
+          "instructions": "Investigate one local failure such as a wrong DB URL, missing owner filter, unhandled SQL conflict or stale UI result. Record evidence and wrong guesses before changing code. Add a failing regression test, fix the cause and write a brief blameless postmortem.",
+          "proof": "Your evidence identifies the cause and a regression test catches the original bug.",
+          "trap": "Never inject failures into another person's database or loosen validation until a test goes green."
+        },
+        {
+          "id": "D07.1",
+          "title": "Explain one index from the query",
+          "minutes": 45,
+          "path": "week-14/database/query-plan.sql",
+          "learn": "EXPLAIN, filter/order alignment and measurement limits",
+          "resources": ["explain"],
+          "instructions": "Inspect the merchant list query with EXPLAIN on synthetic rows. Propose a supporting merchant/time/ID index and compare plans before/after on a suitable fixture size. Add it through a new migration if justified. Say why a tiny table may use a sequential scan correctly.",
+          "proof": "The index proposal matches actual filters/order and the explanation does not claim a measured speedup without evidence.",
+          "trap": "An index is not automatically better for every table or write-heavy operation."
+        },
+        {
+          "id": "E11.2",
+          "title": "Rehearse the clean-start handover",
+          "minutes": 45,
+          "path": "week-14/delivery/clean-start-notes.md",
+          "learn": "Setup instructions, fresh state and reproducibility",
+          "resources": ["review"],
+          "instructions": "Give a peer the repository and current runbook. Use a fresh named disposable database and npm ci. Watch them start API/UI, migrate, seed and send a fixture without verbal shortcuts. Record and fix confusing instructions.",
+          "proof": "A non-author gets to the protected event screen using written commands; missing steps are corrected.",
+          "trap": "Do not delete or reset a personal or shared database to make the rehearsal look clean."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["E", "D"]
+    },
+    {
+      "number": 15,
+      "title": "Demonstrate and hand over the merchant application",
+      "phase": "Deliver",
+      "need": "The product and learning evidence must survive the original builders and continue into Sprint 2.",
+      "before": "Do not add new features this week. Bring the clean-start corrections, test matrix, approved contracts and authored contribution links.",
+      "milestone": "Independent handover",
+      "outcome": "A reproducible local product, an honest demo and attributable contribution evidence.",
+      "shared": "shared/delivery/runbook.md, shared/delivery/final-architecture.md, shared/delivery/demo.md and README.md",
+      "tasks": [
+        {
+          "id": "E12.1",
+          "title": "Finish the runbook and architecture",
+          "minutes": 60,
+          "path": "week-15/delivery/runbook.md",
+          "learn": "Actual architecture, migrations, seed accounts, tests and limitations",
+          "resources": ["review"],
+          "instructions": "Write the final native-Windows runbook with clone/install, local configuration, database creation, migration/seed, API/UI start, tests, common failures and shutdown. Include a diagram matching actual code and a short next-sprint boundary. Propose the shared root README update in the rotation PR.",
+          "proof": "A stranger can find every command, secret variable and dependency; unfinished product work is named, not hidden.",
+          "trap": "Do not describe Docker, queues, Rust, deployment or real payments as implemented in Sprint 1."
+        },
+        {
+          "id": "C06.1",
+          "title": "Demonstrate the merchant's real actions",
+          "minutes": 35,
+          "path": "week-15/delivery/demo.md",
+          "learn": "User-focused demo and browser/API evidence",
+          "resources": ["http"],
+          "instructions": "Demonstrate login, one accepted fixture, invalid input, duplicate/conflicting ID, filtered/paged viewing, another merchant's rejection and logout. Explain one UI/API/DB request path and state the local-only and session-revocation limits.",
+          "proof": "The demo shows negative cases as well as success, with no real money, credentials or customer data.",
+          "trap": "A polished screen does not replace backend evidence."
+        },
+        {
+          "id": "E12.2",
+          "title": "Complete the independent start and contribution record",
+          "minutes": 55,
+          "path": "week-15/delivery/handover.md",
+          "learn": "Clean-start proof, authorship and technical explanation",
+          "resources": ["git", "review"],
+          "instructions": "Have a non-author follow the final runbook and record commands/outcomes. Link your own core task commits/PRs and shared rotation contributions. Write two defensible resume statements about work you actually did and one limitation you can explain. Keep private grading outside this public repository.",
+          "proof": "The final witness succeeds using the runbook, core tests pass, and individual contributions are attributable.",
+          "trap": "Do not claim production ownership, Rust expertise or smart-contract work from this sprint."
+        }
+      ],
+      "budget": {
+        "learning": 90,
+        "tasks": 150,
+        "shared": 30,
+        "review": 30
+      },
+      "tracks": ["E", "C"]
+    }
+  ],
+  "tracks": {
+    "T": "TypeScript and JavaScript",
+    "B": "Backend Development",
+    "D": "SQL and Persistence",
+    "C": "Client Integration",
+    "E": "Engineering and Delivery"
+  },
+  "sources": {
+    "js": [
+      "JavaScript guide",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+    ],
+    "ts": [
+      "TypeScript for new programmers",
+      "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch"
+    ],
+    "types": [
+      "Everyday types",
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    ],
+    "narrow": [
+      "Narrowing",
+      "https://www.typescriptlang.org/docs/handbook/2/narrowing.html"
+    ],
+    "functions": [
+      "Functions",
+      "https://www.typescriptlang.org/docs/handbook/2/functions.html"
+    ],
+    "modules": [
+      "Modules",
+      "https://www.typescriptlang.org/docs/handbook/2/modules.html"
+    ],
+    "async": [
+      "Using promises",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises"
+    ],
+    "http": [
+      "HTTP overview",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+    ],
+    "fastify": [
+      "Fastify getting started",
+      "https://fastify.dev/docs/v5.7.x/Guides/Getting-Started/"
+    ],
+    "validation": [
+      "Fastify validation",
+      "https://fastify.dev/docs/v5.7.x/Reference/Validation-and-Serialization/"
+    ],
+    "ftest": [
+      "Fastify testing",
+      "https://fastify.dev/docs/v5.7.x/Guides/Testing/"
+    ],
+    "nodeTest": [
+      "Node 22 test runner",
+      "https://nodejs.org/docs/latest-v22.x/api/test.html"
+    ],
+    "pg": [
+      "PostgreSQL 17 tutorial",
+      "https://www.postgresql.org/docs/17/tutorial.html"
+    ],
+    "constraints": [
+      "PostgreSQL constraints",
+      "https://www.postgresql.org/docs/17/ddl-constraints.html"
+    ],
+    "queries": [
+      "Parameterized node-postgres queries",
+      "https://node-postgres.com/features/queries"
+    ],
+    "pool": [
+      "node-postgres pooling",
+      "https://node-postgres.com/features/pooling"
+    ],
+    "transactions": [
+      "node-postgres transactions",
+      "https://node-postgres.com/features/transactions"
+    ],
+    "conflict": [
+      "PostgreSQL INSERT and conflicts",
+      "https://www.postgresql.org/docs/17/sql-insert.html"
+    ],
+    "limit": [
+      "PostgreSQL LIMIT and OFFSET",
+      "https://www.postgresql.org/docs/17/queries-limit.html"
+    ],
+    "session": [
+      "Fastify secure-session",
+      "https://github.com/fastify/fastify-secure-session"
+    ],
+    "crypto": [
+      "Node 22 crypto",
+      "https://nodejs.org/docs/latest-v22.x/api/crypto.html"
+    ],
+    "csrf": [
+      "OWASP CSRF prevention",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ],
+    "react": ["React quick start", "https://react.dev/learn"],
+    "state": [
+      "React state",
+      "https://react.dev/learn/state-a-components-memory"
+    ],
+    "effect": [
+      "React effects",
+      "https://react.dev/learn/synchronizing-with-effects"
+    ],
+    "fetch": [
+      "Using Fetch",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+    ],
+    "logs": [
+      "Fastify logging",
+      "https://fastify.dev/docs/v5.7.x/Reference/Logging/"
+    ],
+    "explain": [
+      "PostgreSQL EXPLAIN",
+      "https://www.postgresql.org/docs/17/using-explain.html"
+    ],
+    "git": [
+      "Git book basics",
+      "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository"
+    ],
+    "review": [
+      "GitHub reviews",
+      "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests"
+    ],
+    "actions": ["GitHub Actions", "https://docs.github.com/en/actions"]
+  },
+  "students": [
+    "BE01",
+    "BE02",
+    "BE03",
+    "BE04",
+    "BE05",
+    "BE06",
+    "BE07",
+    "BE08",
+    "BE09",
+    "BE10"
+  ]
+}
