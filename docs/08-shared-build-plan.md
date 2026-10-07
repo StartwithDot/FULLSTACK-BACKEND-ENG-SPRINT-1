@@ -22,4 +22,6 @@ Each student attempts the core skill. The build pair promotes the smallest revie
 
 Shared product files not present in the starter are created by students at the named week. Placeholder code is not a finished application or an assessment answer. Maintain API/schema compatibility deliberately and add forward migrations after a migration has been shared.
 
+Use the [individual wiring guide](14-individual-app-wiring.md) to assemble your own continuing app through those same tasks. The [PayHook handoff](13-payhook-handoff.md) defines the next-sprint service boundary; it does not add implementation tasks here.
+
 All ten students learn all core work even when only two author that week's shared PR. Every student serves on three build rotations. Review and witness evidence belongs in the per-week log, not an invented completion claim.

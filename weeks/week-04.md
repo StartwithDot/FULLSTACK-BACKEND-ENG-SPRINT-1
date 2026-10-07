@@ -14,6 +14,12 @@ Read the HTTP contract in docs/04-api-and-security-contract.md. PostgreSQL pract
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Start your continuing individual API as described in docs/14-individual-app-wiring.md: copy the immutable api-starter once, then retain week-04/api/app.ts and server.ts as the factory/listener.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Build and inspect a tiny Fastify API, and explain the result using the proof below.
@@ -46,7 +52,7 @@ Task times are planning estimates, not measured promises. Review and build work 
 
 ### 1. Build and inspect a tiny Fastify API (`B01.1`)
 
-- [ ] Start an individual exported createApp factory, using the supplied app/listener split as a scaffold. Add an in-memory GET /api/events returning a few synthetic records. Put the listener in server.ts. Send a manual request with curl.exe and add one app.inject test in app.test.ts. Bind the listener to loopback. Preserve the shared createApp export when promoting routes.
+- [ ] Copy the immutable fixtures/api-starter once into your week-04/api folder as described in docs/14-individual-app-wiring.md. Continue its exported createApp factory and separate server.ts listener. Add an in-memory GET /api/events returning a few synthetic records, send a request with curl.exe and add an app.inject test in app.test.ts. Run the app with npm.cmd run dev:student -- BE01, replacing BE01. Bind to loopback and retain this entry point in later weeks.
 
 **Primary commit path:** `students/<student-id>/week-04/api/app.ts`. Small companion source/tests/notes needed by this same task may be committed with it. If the path names an earlier week, continue that existing lab; do not restart it.
 

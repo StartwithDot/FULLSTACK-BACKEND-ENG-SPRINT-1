@@ -172,7 +172,7 @@
           "path": "week-04/api/app.ts",
           "learn": "HTTP methods, paths, headers, status, JSON and app factories",
           "resources": ["http", "fastify", "ftest"],
-          "instructions": "Start an individual exported createApp factory, using the supplied app/listener split as a scaffold. Add an in-memory GET /api/events returning a few synthetic records. Put the listener in server.ts. Send a manual request with curl.exe and add one app.inject test in app.test.ts. Bind the listener to loopback. Preserve the shared createApp export when promoting routes.",
+          "instructions": "Copy the immutable fixtures/api-starter once into your week-04/api folder as described in docs/14-individual-app-wiring.md. Continue its exported createApp factory and separate server.ts listener. Add an in-memory GET /api/events returning a few synthetic records, send a request with curl.exe and add an app.inject test in app.test.ts. Run the app with npm.cmd run dev:student -- BE01, replacing BE01. Bind to loopback and retain this entry point in later weeks.",
           "proof": "An annotated exchange names method, URL, response status and JSON. The test runs without opening a network port.",
           "trap": "The in-memory lab is local and temporary. It has no authentication yet and must not be publicly exposed."
         },
@@ -224,7 +224,7 @@
           "path": "week-05/api/events.ts",
           "learn": "JSON Schema, request limits, safe errors and in-memory persistence",
           "resources": ["validation", "ftest"],
-          "instructions": "Add POST /api/events and GET /api/events to your lab. Validate the full body shape and enforce the agreed amount bounds and event kinds. Configure coercion/removal deliberately so bad types and unexpected owner fields are rejected rather than silently rewritten. Add good and bad injection tests.",
+          "instructions": "Add POST /api/events and GET /api/events to your lab. Validate the full body shape and enforce the agreed amount bounds and event kinds. Configure coercion/removal deliberately so bad types and unexpected owner fields are rejected rather than silently rewritten. Add good and bad injection tests. Export registerEventRoutes and register it in week-04/api/app.ts, replacing the earlier demonstration GET. Later repositories are injected into this same route module.",
           "proof": "A valid event gets 201 and can be listed; invalid type, missing ID and oversized body get deliberate failures. Database persistence and auth are still later tasks.",
           "trap": "Keep the lab loopback-only. A typed request body alone is not runtime validation."
         },
@@ -327,7 +327,7 @@
           "path": "week-07/database/deduplication.sql",
           "learn": "Composite uniqueness, ON CONFLICT and concurrent requests",
           "resources": ["constraints", "conflict"],
-          "instructions": "Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together.",
+          "instructions": "Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together. Keep the stated SQL artifact and include the applied forward migration as week-06/database/migrations/002-event-identity.sql in the same task commit.",
           "proof": "Sequential and overlapping identical requests leave one row; the same ID with changed agreed fields returns 409 and keeps the first record.",
           "trap": "An in-process Set or pre-insert check alone does not protect concurrent database writes."
         },

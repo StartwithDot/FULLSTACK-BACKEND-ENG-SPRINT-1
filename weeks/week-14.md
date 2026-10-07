@@ -14,6 +14,12 @@ Use a reversible failure only in disposable/local test data. The maintainer choo
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Use the continuing app's real commands in the clean-start runbook. Any new index is a forward migration in the original Week 6 directory.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Break, investigate and fix one failure, and explain the result using the proof below.

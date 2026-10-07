@@ -14,6 +14,12 @@ Keep the app local-only until the auth and ownership work is complete. Use Postg
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Apply the identity migration through the original migration directory and import the outcome/list helpers into your existing repository/routes. Keep one list endpoint.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Protect event identity in the database, and explain the result using the proof below.
@@ -46,7 +52,7 @@ Task times are planning estimates, not measured promises. Review and build work 
 
 ### 1. Protect event identity in the database (`D04.1`)
 
-- [ ] Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together.
+- [ ] Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together. Keep the stated SQL artifact and include the applied forward migration as week-06/database/migrations/002-event-identity.sql in the same task commit.
 
 **Primary commit path:** `students/<student-id>/week-07/database/deduplication.sql`. Small companion source/tests/notes needed by this same task may be committed with it. If the path names an earlier week, continue that existing lab; do not restart it.
 

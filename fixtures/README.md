@@ -5,6 +5,7 @@
 - practice.sql: two merchants and six events in a separate practice schema. Load it into the dedicated practice database, not an existing personal database.
 - passwords.ts: supplied async password hashing/verification support for Week 8.
 - migration-runner.ts and migrate.ts: supplied Week 6 migration support. Students write the schema and explain the runner, not invent infrastructure plumbing.
+- api-starter/: immutable Week 4 API/listener shell for one continuing individual app.
 - web-starter/: minimal copyable Week 10 React shell, not a solved dashboard.
 
 The event fixture amounts are integer paise. The first three rows belong to merchant-one in SQL, the next three to merchant-two. API ownership comes from authentication, never a submitted merchant_id.

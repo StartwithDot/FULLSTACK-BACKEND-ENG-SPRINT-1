@@ -14,6 +14,12 @@ Reuse the existing suite and GitHub workflow. Do not introduce AWS, Docker, Redi
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Install limits, readiness and diagnostics in the same app. Run your discovered student tests and promote the reviewed modules without student-folder imports.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Bound and diagnose the API, and explain the result using the proof below.

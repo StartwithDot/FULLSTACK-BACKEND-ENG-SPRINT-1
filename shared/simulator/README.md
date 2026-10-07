@@ -1,6 +1,6 @@
 # Sandbox API consumer
 
-This is a student-built Node/TypeScript consumer, not a provider integration or signed webhook receiver.
+This is a student-built Node/TypeScript consumer for MerchantDesk's Sprint 1 operator API, not a provider integration or signed webhook receiver. It is replaced as the delivery source by PayHook in the following sprint; see the [handoff](../../docs/13-payhook-handoff.md).
 
 Week 5: submit one synthetic event and report status/response.
 Week 9: sign in using local synthetic credentials, retain the response cookie in memory, send it with protected requests and include the exact allowed Origin for state-changing calls.

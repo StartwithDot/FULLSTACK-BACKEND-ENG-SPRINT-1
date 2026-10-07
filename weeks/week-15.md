@@ -14,6 +14,12 @@ Do not add new features this week. Bring the clean-start corrections, test matri
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Hand over MerchantDesk as the Sprint 1 deliverable and read the PayHook handoff for the next-sprint receiver boundary. Demonstrate the continuing app, not separate weekly snippets.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Finish the runbook and architecture, and explain the result using the proof below.

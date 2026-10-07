@@ -14,6 +14,12 @@ Use fixtures/web-starter/ as the individual UI scaffold, following docs/03-stude
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Keep using your continuing API. Copy the immutable web-starter once into week-10/client and retain that client folder through Week 13.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Render a typed event list, and explain the result using the proof below.

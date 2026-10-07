@@ -14,6 +14,12 @@ Bring the app factory and field contract. Use Fastify's built-in JSON Schema; do
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Continue the Week 4 app. Register week-05/api/events.ts in its factory and remove the demonstration GET before installing the replacement; do not start a second server.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Add the validated event route, and explain the result using the proof below.
@@ -46,7 +52,7 @@ Task times are planning estimates, not measured promises. Review and build work 
 
 ### 1. Add the validated event route (`B02.1`)
 
-- [ ] Add POST /api/events and GET /api/events to your lab. Validate the full body shape and enforce the agreed amount bounds and event kinds. Configure coercion/removal deliberately so bad types and unexpected owner fields are rejected rather than silently rewritten. Add good and bad injection tests.
+- [ ] Add POST /api/events and GET /api/events to your lab. Validate the full body shape and enforce the agreed amount bounds and event kinds. Configure coercion/removal deliberately so bad types and unexpected owner fields are rejected rather than silently rewritten. Add good and bad injection tests. Export registerEventRoutes and register it in week-04/api/app.ts, replacing the earlier demonstration GET. Later repositories are injected into this same route module.
 
 **Primary commit path:** `students/<student-id>/week-05/api/events.ts`. Small companion source/tests/notes needed by this same task may be committed with it. If the path names an earlier week, continue that existing lab; do not restart it.
 

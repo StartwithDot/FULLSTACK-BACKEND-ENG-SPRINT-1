@@ -10,7 +10,9 @@ The cohort is the engineering team. In Week 1 each student clarifies the user, o
 
 ## Sprint 1 boundary
 
-Build one TypeScript/Fastify API, one PostgreSQL database and one small React interface. Start as a modular application, not microservices.
+Build MerchantDesk: one TypeScript/Fastify API, one PostgreSQL database and one small React interface. Start as a modular application, not microservices.
+
+This sprint delivers the merchant-side application. The Rust sprint introduces PayHook as the main webhook reliability service, forwarding verified events into MerchantDesk. The [PayHook handoff contract](13-payhook-handoff.md) separates human login from later service credentials and defines the future delivery envelope. That receiver route is not extra Sprint 1 implementation work.
 
 Core user actions:
 

@@ -14,13 +14,17 @@ This is the cohort's learning repository. Everyone learns the same essential ski
 4. [Student working guide](docs/03-student-guide.md)
 5. Your folder in [students/](students/README.md), then [Week 1](weeks/week-01.md)
 
-For the owner: [publish this folder to GitHub](docs/12-publish-to-github.md).
+Official repository: [StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1](https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1).
+
+For students: [connect the individual app across weeks](docs/14-individual-app-wiring.md). For collaborators: [publish changes to the official repository](docs/12-publish-to-github.md).
 
 ## The product
 
 A merchant operator signs in, submits synthetic payment events and inspects their own event history. The backend validates input, persists it in PostgreSQL, handles repeated event identity, protects merchant ownership and supports bounded filtering/paging. A small React interface makes those capabilities usable.
 
-No payments are processed. No real provider account, card data, money or cloud subscription is required. The application continues into later sprints.
+No payments are processed. No real provider account, card data, money or cloud subscription is required.
+
+MerchantDesk is the Sprint 1 product and later merchant receiver for PayHook. The main PayHook reliability service begins in the Rust sprint; MerchantDesk continues as its destination and inspection application. Sprint 1 uses the direct local simulator, not an already-connected PayHook service. The [PayHook handoff](docs/13-payhook-handoff.md) defines the later delivery contract and separate service authentication without adding Sprint 1 tasks.
 
 ## Parallel tracks
 

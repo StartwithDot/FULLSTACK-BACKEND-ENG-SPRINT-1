@@ -2,6 +2,12 @@
 
 This is the bounded Sprint 1 target. Students implement it at the relevant week; it is not a claim that the supplied shells already implement these routes.
 
+## Product and future service boundary
+
+MerchantDesk implements the operator API below during Sprint 1. PayHook is a separate reliability service built in the following Rust sprint. Its future receiver route, service credential, source-aware identity migration and acknowledgment semantics are defined in the [PayHook handoff](13-payhook-handoff.md).
+
+Do not use operator cookies or Origin headers as PayHook service authentication. Do not add the future integration endpoint to the current task count.
+
 ## Event body
 
 | Field             | Rule                                                      |

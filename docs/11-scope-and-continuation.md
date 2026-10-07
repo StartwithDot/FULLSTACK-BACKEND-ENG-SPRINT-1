@@ -23,15 +23,17 @@ All students build typed components, props/state, controlled forms, fetch/effect
 
 No Next.js, global state library, visual design specialisation or multiple client frameworks. React is the UI; HTTP transports data between that UI and Fastify.
 
-## Continuing the same application
+## Continuing the PayHook product ecosystem
 
-| Sprint | Main learning                                                                                         | Application progression                                                                          |
-| ------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| 1      | TypeScript Web2 application foundations                                                               | Local merchant event API, database and small interface                                           |
-| 2      | Rust, Cargo, ownership/errors, Tokio, Actix Web and SQLx                                              | Implement a well-defined backend capability while reusing the product contract and SQL knowledge |
-| 3      | Production engineering, Linux, Docker, CI, failure/recovery, Redis when justified and one cloud model | Operate and strengthen the same application; preserve a free core run path                       |
-| 4      | Web3 fundamentals, Solana, Anchor, Rust and TS clients                                                | Extend the product through a clearly scoped sandbox chain integration                            |
-| 5      | Solidity/EVM, Foundry, contract/client integration and security exercises                             | Add a scoped EVM capability and compare assumptions with Solana                                  |
+| Sprint | Main learning                                                                                         | Application progression                                                                               |
+| ------ | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 1      | TypeScript Web2 application foundations                                                               | MerchantDesk: local merchant event API, database and small interface                                  |
+| 2      | Rust, Cargo, ownership/errors, Tokio, Actix Web and SQLx                                              | Build PayHook and connect its verified deliveries to MerchantDesk                                     |
+| 3      | Production engineering, Linux, Docker, CI, failure/recovery, Redis when justified and one cloud model | Strengthen PayHook retries, history and recovery; operate both applications with a free core run path |
+| 4      | Web3 fundamentals, Solana, Anchor, Rust and TS clients                                                | Extend the product through a clearly scoped sandbox chain integration                                 |
+| 5      | Solidity/EVM, Foundry, contract/client integration and security exercises                             | Add a scoped EVM capability and compare assumptions with Solana                                       |
+
+MerchantDesk is the Sprint 1 merchant application. Sprint 2 builds the separate PayHook service in Rust/Actix Web and connects it using the [handoff contract](13-payhook-handoff.md). Sprint 3 strengthens delivery reliability and operation across both applications. We reuse the product ecosystem, not rename MerchantDesk or claim its human login already authenticates PayHook.
 
 These are program directions, not five finished syllabuses or guaranteed career outcomes. Do not add blockchain features or production deployment to Sprint 1 to imitate a future job title.
 

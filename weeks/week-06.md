@@ -14,6 +14,12 @@ Bring the agreed model and HTTP tests. Use a disposable test database for tests,
 
 Use the [student guide](../docs/03-student-guide.md) for commands, [resource map](../docs/07-resources.md) for bounded reading and [troubleshooting](../docs/09-troubleshooting.md) when a tool fails. Replace `<student-id>` with your assigned BE number.
 
+## Keep the application connected
+
+Inject the new repository into the original factory. Keep migrations in week-06/database/migrations and use your own lab_beXX schema, as described in the wiring guide.
+
+Read the [individual wiring guide](../docs/14-individual-app-wiring.md) for the module map and repeatable commands. This is integration guidance for the existing core tasks, not additional work.
+
 ## By the end you can
 
 - Write and apply the first migration, and explain the result using the proof below.

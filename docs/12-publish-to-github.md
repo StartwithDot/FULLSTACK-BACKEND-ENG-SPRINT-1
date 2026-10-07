@@ -1,76 +1,87 @@
-# Publish this folder to GitHub
+# Work with the official cohort repository
 
-The delivered folder is local. No repository, commit, branch or push has been created for you.
+The main cohort repository is [StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1](https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1). Use it for cohort changes going forward, not the earlier personal repository.
 
-## 1. Review the cohort
+## Student and collaborator remotes are different
 
-Read README.md, Week 1, the task index and the weekly map. From the folder below, run npm.cmd ci and npm.cmd run check. Also run the database checks after completing the PostgreSQL setup. Do not commit .env, passwords, node_modules or generated dist folders.
+Students follow the [student guide](03-student-guide.md): origin is their own fork and upstream is the StartwithDot repository. They push a task branch to their fork and open a PR to StartwithDot/main.
 
-## 2. Create an empty GitHub repository
+Write collaborators may use the official repository as origin and push a review branch there. An accepted invitation and Write access are required; repository rules may require a PR before main is updated.
 
-Sign in to GitHub and choose New repository. Use **Backend-Engineering-Sprint-1** under your account or the cohort account you control. Public is suitable for a public cohort.
+The delivered local folder can retain the name Backend-Engineering-Sprint-1. That directory name does not determine which GitHub repository receives a push.
 
-Do not select Add README, .gitignore or license here; the local files are the initial content. A license is a separate ownership decision, not assumed permission to redistribute either reference repository's code.
+## Existing collaborator checkout
 
-Copy the HTTPS repository URL. The example below uses jrk101; replace it if publishing under another owner.
-
-## 3. Initial local commit and push
-
-Paste commands as plain text in PowerShell. URLs inside commands must not contain Markdown brackets.
+From the delivered folder, inspect the remotes and branch first:
 
 ```powershell
 Set-Location -LiteralPath "C:\Users\josep\Documents\Codex\2026-09-22\hey\outputs\Backend-Engineering-Sprint-1"
-git init
-git branch -M main
-git status --short
-git add .
-git diff --cached --stat
-git commit -m "Create 15 week backend engineering cohort"
-git remote add origin https://github.com/jrk101/Backend-Engineering-Sprint-1.git
+git status --short --branch
 git remote -v
-git push -u origin main
 ```
 
-Inspect the staged files before the commit. If Git needs your author name/email, set them for this repository, not somebody else's identity:
+For this checkout, origin should be https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1.git. If it is wrong, correct it deliberately:
 
 ```powershell
-git config user.name "Your Name"
-git config user.email "YOUR_VERIFIED_OR_GITHUB_NOREPLY_EMAIL"
+git remote set-url origin https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1.git
 ```
 
-Then repeat the commit and push. Follow Git's browser sign-in when prompted. Never paste tokens or passwords into public commands, commits or chat.
+If there is no origin, use git remote add origin followed by that plain URL instead. A personal remote may be retained for reference; do not push to it by accident.
 
-## Ownership exception if Git reports dubious ownership
+Do not run git init again or create another empty repository for an existing checkout.
 
-If this exact delivered folder is trusted and Git reports the sandbox/user ownership mismatch, add only this directory:
+## Review and publish a change
+
+Start from a clean main. Save or finish unrelated work before switching branches. Fast-forward the official main; stop and inspect if Git reports divergence.
+
+```powershell
+git switch main
+git fetch origin
+git merge --ff-only origin/main
+git switch -c clarify-cohort-integration
+```
+
+Use a meaningful new branch name for your actual change. Make the changes, run their relevant checks and inspect staged files:
+
+```powershell
+npm.cmd run check
+git add .
+git diff --cached --stat
+git diff --cached
+git commit -m "Clarify PayHook handoff and student app wiring"
+git push -u origin clarify-cohort-integration
+```
+
+Open a PR to StartwithDot/main, inspect its Actions checks and merge through the repository's review rules. A branch push alone does not update the main cohort page. Do not commit .env, passwords, dependencies, database files or generated dist folders.
+
+Where main pushes are permitted and the change is already reviewed, git push origin main updates the official main. Do not bypass branch protection or use force-push if that command is rejected.
+
+## Fresh collaborator checkout
+
+```powershell
+git clone https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1.git
+Set-Location -LiteralPath "FULLSTACK-BACKEND-ENG-SPRINT-1"
+npm.cmd ci
+npm.cmd run setup:check
+npm.cmd run check
+```
+
+Set your own repository-local author name/email if needed. Follow Git's browser sign-in; never paste tokens or passwords into commands or public evidence. GitHub may require organization SSO authorization.
+
+## Ownership exception
+
+If Git reports the sandbox/user ownership mismatch for this exact trusted delivered folder, add only that directory:
 
 ```powershell
 git config --global --add safe.directory "C:/Users/josep/Documents/Codex/2026-09-22/hey/outputs/Backend-Engineering-Sprint-1"
 ```
 
-Then retry the failed Git command. Do not trust every directory with a wildcard.
+Do not trust every directory with a wildcard. For a different trusted checkout, use its exact resolved path.
 
-## Remote fixes
+## Verify the result
 
-If origin already exists, inspect git remote -v first. To correct this repository's URL:
+Open the official repository's main branch after the PR is merged or a permitted main push succeeds. Confirm the changed files and inspect the hosted starter/database jobs. Local checks cannot confirm a hosted Actions run.
 
-```powershell
-git remote set-url origin https://github.com/jrk101/Backend-Engineering-Sprint-1.git
-git push -u origin main
-```
+If PowerShell says "not a git repository", return to the actual checkout. A commit message belongs after git commit -m; it is not a branch name to push.
 
-If the remote already contains commits, do not force-push. Stop and decide how to preserve those files. If PowerShell says "not a git repository", return to the exact folder using Set-Location.
-
-A commit message is not a branch name. Use git commit -m for the message and git push origin main for the main branch.
-
-## 4. Verify publication
-
-Open the repository's main branch. Confirm README, weeks/week-15.md, all ten student folders and package-lock.json are visible. Open Actions and inspect the starter-check and database jobs. The local checks cannot confirm a hosted Actions run.
-
-A pushed feature branch does not automatically update main. If you choose review branches later, merge their reviewed PRs before expecting main to show the changes.
-
-Choose Settings > Actions permissions if the workflow is disabled. Standard GitHub-hosted Actions usage in public repositories has a free path; private repositories have plan quotas. Do not enable paid larger runners for this course. See [Actions limits](https://docs.github.com/en/actions/reference/limits).
-
-Set mentor permissions, assign BE01-BE10 and optionally require passing checks/review in repository rules. These owner settings are not created by the local files.
-
-For later updates, review the diff, run checks, commit a focused change and push the actual branch. Keep main as the coherent cohort material.
+Maintainers configure mentor access, Actions permissions and branch rules. A collaborator without administration permission should ask the maintainer, not try to bypass those controls. No paid runners or cloud account are required.

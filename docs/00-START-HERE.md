@@ -1,6 +1,6 @@
 # Start Here
 
-The client wants a useful merchant event application. The cohort turns that request into a brief, practises the needed skills and assembles one reviewed product.
+The client wants a useful merchant event application. The cohort turns that request into a brief, practises the needed skills and assembles MerchantDesk. It becomes PayHook's merchant-side application in later sprints; PayHook itself is built in the Rust sprint. See the [handoff boundary](13-payhook-handoff.md).
 
 ## What the words mean
 

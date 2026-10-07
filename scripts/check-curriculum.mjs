@@ -51,6 +51,41 @@ for (const [index, week] of data.weeks.entries()) {
 }
 assert.equal(ids.size, 45);
 
+const official =
+  'https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1';
+const guide = readFileSync('docs/03-student-guide.md', 'utf8');
+const publication = readFileSync('docs/12-publish-to-github.md', 'utf8');
+assert.ok(guide.includes(official + '.git'));
+assert.ok(
+  guide.includes(
+    'https://github.com/YOUR_USERNAME/FULLSTACK-BACKEND-ENG-SPRINT-1.git',
+  ),
+);
+assert.ok(publication.includes(official + '.git'));
+assert.ok(
+  !publication.includes(
+    'https://github.com/jrk101/Backend-Engineering-Sprint-1',
+  ),
+);
+const wiring = readFileSync('docs/14-individual-app-wiring.md', 'utf8');
+assert.ok(wiring.includes('week-04/api/app.ts'));
+assert.ok(wiring.includes('week-04/api/server.ts'));
+for (const week of data.weeks.filter((week) => week.number >= 4)) {
+  const number = String(week.number).padStart(2, '0');
+  assert.ok(
+    readFileSync('weeks/week-' + number + '.md', 'utf8').includes(
+      '14-individual-app-wiring.md',
+    ),
+  );
+}
+const handoff = readFileSync('docs/13-payhook-handoff.md', 'utf8');
+assert.ok(handoff.includes('/integrations/payhook/events'));
+assert.ok(handoff.includes('Authorization: Bearer'));
+assert.ok(handoff.includes('following sprint'));
+const scripts = JSON.parse(readFileSync('package.json', 'utf8')).scripts;
+for (const command of ['dev:student', 'test:student', 'test:student:db'])
+  assert.ok(scripts[command]);
+
 function visit(directory) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     if (
