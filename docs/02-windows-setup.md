@@ -8,15 +8,18 @@ Install [Git for Windows](https://git-scm.com/downloads/win) and a free editor s
 
 ```powershell
 git --version
-node --version
-npm.cmd --version
 ```
 
 ## 2. Node (Week 1)
 
 Install the latest patched **Node 22.x** Windows release from [Node downloads](https://nodejs.org/en/download). The package engine requires Node 22.17 or newer within the 22.x line. Avoid an untested major or a stale patch; use the committed dependency lockfile. Restart PowerShell after installation.
 
-After cloning or opening the delivered folder:
+```powershell
+node --version
+npm.cmd --version
+```
+
+Next, follow **Set up GitHub** in the [student guide](03-student-guide.md). After cloning or opening the delivered folder, run from its root:
 
 ```powershell
 npm.cmd ci
@@ -102,7 +105,9 @@ Generate a key locally:
 node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
 ```
 
-Copy that output into SESSION_KEY in ignored .env. It is a local secret, not output to commit. APP_ORIGIN must be exactly `http://localhost:5173` for the supplied UI/proxy. Do not alternate localhost and 127.0.0.1 in browser URLs.
+Copy that output into SESSION_KEY in ignored .env. It is 64 hexadecimal characters representing 32 bytes, not a 64-byte plugin key. Validate that format, then decode with `Buffer.from(value, 'hex')` before passing it as the session plugin's key. Missing or malformed keys must fail startup without printing the value.
+
+APP_ORIGIN must be exactly `http://localhost:5173` for the supplied UI/proxy. Do not alternate localhost and 127.0.0.1 in browser URLs.
 
 ## 7. Quality commands
 

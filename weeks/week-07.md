@@ -32,7 +32,7 @@ Database-backed duplicate behavior and a stable, bounded listing contract.
 
 ### 1. Protect event identity in the database (`D04.1`)
 
-- [ ] Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together. Keep the stated SQL artifact and include the applied forward migration as week-06/database/migrations/002-event-identity.sql in the same task commit.
+- [ ] Inspect existing rows for duplicate merchant/provider identities before adding the unique key (merchant_id, provider_event_id) through a new migration. If duplicates exist, preserve them and agree an explicit reconciliation with the reviewer; do not silently delete or reset. Test a fresh schema and the upgrade fixture. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together. Keep the stated SQL artifact and include the applied forward migration as week-06/database/migrations/002-event-identity.sql in the same task commit.
 
 **Primary path:** `students/<student-id>/week-07/database/deduplication.sql`.
 

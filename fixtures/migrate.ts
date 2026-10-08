@@ -22,12 +22,21 @@ if (mode === 'practice') {
 }
 if (!connectionString || connectionString.includes('REPLACE_LOCALLY'))
   throw new Error('Configure the dedicated database URL in ignored .env.');
-if (
-  mode === 'practice' &&
-  !decodeURIComponent(new URL(connectionString).pathname).endsWith('_test')
-) {
+let validConnection = false;
+try {
+  const url = new URL(connectionString);
+  const database = decodeURIComponent(url.pathname).slice(1);
+  validConnection =
+    ['postgres:', 'postgresql:'].includes(url.protocol) &&
+    Boolean(url.hostname) &&
+    database.length > 0 &&
+    (mode === 'product' || database.endsWith('_test'));
+} catch {
+  // URL parser errors can contain the complete input, including a password.
+}
+if (!validConnection) {
   throw new Error(
-    'Practice migrations require a dedicated database ending in _test.',
+    'Configure a valid PostgreSQL database URL; practice requires a dedicated database ending in _test.',
   );
 }
 if (!directory || !existsSync(directory))

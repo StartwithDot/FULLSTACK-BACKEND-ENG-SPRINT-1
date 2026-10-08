@@ -30,7 +30,7 @@ Typed event data, real SQL answers and an explicit input contract.
 
 **Primary path:** `students/<student-id>/week-02/typescript/event-list.ts`.
 
-**Proof for review:** The captured count matches the fixture and an intentionally wrong assignment is rejected by TypeScript.
+**Proof for review:** The captured count matches the fixture. npm.cmd run typecheck rejects an intentionally wrong assignment; restore valid code and rerun successfully before committing.
 
 **Known trap:** Type annotations do not validate JSON received from another process.
 

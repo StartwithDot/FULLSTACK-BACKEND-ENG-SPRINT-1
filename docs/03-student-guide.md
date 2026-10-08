@@ -50,7 +50,10 @@ Run commands from the repository root, using your actual BE number and file path
 ```powershell
 npm.cmd run practice -- students/BE01/week-01/typescript/inspector.ts
 npm.cmd run test:practice -- students/BE01/week-03/typescript/validate-event.test.ts
+npm.cmd run typecheck
 ```
+
+`practice` and `test:practice` use tsx to execute TypeScript; they do not check types. Run `typecheck` separately. For the Week 2 intentional type error, capture the expected compiler failure, then restore valid code and rerun the check before committing.
 
 From Week 4, follow the [application wiring guide](12-application-wiring.md). Copy the API starter once, keep `week-04/api/app.ts` as the factory and `server.ts` as the listener, and connect later modules to that app.
 
@@ -60,7 +63,7 @@ npm.cmd run test:student -- BE01
 npm.cmd run test:student:db -- BE01
 ```
 
-Database tests require the dedicated `_test` database. Tests use separate disposable schemas; individual apps use their own lab schema. Root dependencies support all labs, so do not install another dependency set every week. Shared fast tests run with `npm.cmd test`; `npm.cmd run check` verifies the full repository without requiring a database.
+Database tests require the dedicated `_test` database. Tests use separate disposable schemas; individual apps use their own lab schema. Root dependencies support all labs, so do not install another dependency set every week. `npm.cmd test` includes shared/tooling tests and all authored student fast tests present; `npm.cmd run check` verifies the full repository without requiring a database. `npm.cmd run test:db` includes shared and authored student database tests. Targeted commands above help isolate your own failure.
 
 ## Add the React client in Week 10
 

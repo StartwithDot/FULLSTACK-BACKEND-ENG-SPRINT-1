@@ -12,9 +12,23 @@ This is the bounded Sprint 1 target. Students implement it at the relevant week;
 | currency          | INR only in this first sprint                             |
 | occurred_at       | Real UTC timestamp in exact YYYY-MM-DDTHH:mm:ss.sssZ form |
 
-All fields are required; unknown fields are rejected. Reject numeric strings, fractional amounts, null and impossible dates. Body cap: 16 KiB. Ensure runtime schema settings do not strip extra properties or coerce bad types silently. Match date parsing against a round-trip normalized value so February 31 does not become March 3.
+All fields are required; unknown fields are rejected. Reject numeric strings, fractional amounts, null and impossible dates. Timestamp years are 0001-9999; reject year 0000 before database access even though JavaScript can round-trip it. Body cap: 16 KiB. Ensure runtime schema settings do not strip extra properties or coerce bad types silently. Match date parsing against a round-trip normalized value so February 31 does not become March 3.
 
 The server adds immutable ID, verified merchant_id and received_at. Never accept merchant_id from a submitted body. An event's source timestamp does not override received_at ordering.
+
+## Shared wire format
+
+Use these shapes when implementing the routes, simulator and UI, including before Week 10's response-schema tests. Internal database types may differ; map them explicitly at the HTTP boundary.
+
+- **Public event:** exactly the five input fields plus `id`, `merchant_id` and `received_at`. IDs are nonempty opaque JSON strings, not numbers; clients must not parse meaning from them. Both timestamps use the exact UTC format above. `amount_minor` remains a JSON number.
+- **Login body:** exactly `{ "email": "one@example.test", "password": "local value" }`. Normalize the email by trimming and lowercasing, then require a nonempty string of at most 254 characters; seed email addresses in that same form. Passwords are strings of 1-256 UTF-8 bytes; never trim or normalize them. Reject extra fields and invalid types with 400. Validly shaped but incorrect credentials get the same generic 401.
+- **Login success and GET /api/me:** status 200 with `{ "operator": { "id": "opaque-id", "email": "one@example.test", "merchant_id": "opaque-merchant-id" } }`. These are the only public operator fields. Both IDs are strings.
+- **Event POST success and event detail:** return the public event object directly, not `{ event: ... }`. A repeat returns the original stored object, including its receipt timestamp.
+- **Event list:** `{ "items": [], "limit": 20, "offset": 0 }`, with public events in items and numeric limit/offset.
+- **Application error:** `{ "error": { "code": "VALIDATION_ERROR", "message": "Invalid request." } }`. Use stable codes for validation, unauthenticated, forbidden origin, not found, conflict, oversized body and internal/unavailable failures. Clients use the HTTP status and code, not message text. Do not include SQL, stack traces, submitted passwords or database URLs.
+- **Logout:** 204 with no response body. Send the JSON request body `{}` and Content-Type application/json so the browser-write rule applies consistently. Do not call response.json() on a 204.
+
+These are synthetic shape examples, not credentials to seed or implementation answers. The student defines the internal types, mapping, queries and tests.
 
 ## Protected application routes by Week 9
 
@@ -33,7 +47,9 @@ The dependency-readiness route is added in Week 13. All other routes in the tabl
 
 Return a deliberate 400 for input validation and 401 for absent/invalid authentication. Do not reveal another merchant's row existence. Use a small consistent public error envelope with code and safe message; internal failures must not expose SQL/stack traces.
 
-List envelope: `{ items, limit, offset }`. Order by received_at DESC then ID DESC. OFFSET is adequate here, but new writes can shift pages. Do not claim snapshot-consistent pagination.
+List queries accept only optional `kind`, `limit` and `offset`, each once. Omitted kind means all three supported event kinds; a supplied kind must equal an allowed event_type. Defaults are limit 20 and offset 0. Supplied limit/offset must be unsigned decimal digit strings that parse to safe integers, with limit 1-50 and offset >=0. Reject unknown/repeated keys, empty values, fractions, signs and invalid bounds with 400.
+
+URL query values arrive as strings. Validate and parse them deliberately at that boundary; do not enable coercion for event or login JSON bodies just to accept `?limit=20`. Return numeric limit/offset in the list envelope. Order by received_at DESC then ID DESC. OFFSET is adequate here, but new writes can shift pages. Do not claim snapshot-consistent pagination.
 
 ## Identity and duplicate behavior
 
@@ -48,6 +64,8 @@ Use seeded synthetic local operators, the supplied async scrypt password helper 
 Keep a random 32-byte session key in ignored configuration. Set explicit one-hour plugin expiry AND cookie lifetime, HttpOnly and SameSite=Lax. Secure is false only for local loopback HTTP; any later HTTPS deployment needs Secure. Do not store the cookie in localStorage. Resolve the operator/merchant from current server data, not an unsigned client claim.
 
 Regenerate at login and delete at logout. Stateless cookies have a limitation: a stolen copy can remain valid until expiry unless an additional revocation mechanism is built. That mechanism belongs to a later production requirement; describe the limitation honestly.
+
+Prove server-side expiry using a controlled test clock beyond one hour, restoring it after the test. Do not wait an hour or shorten the real application's expiry just to obtain a passing proof. Keep clock-changing tests isolated from parallel work.
 
 ## Browser writes and local environment
 

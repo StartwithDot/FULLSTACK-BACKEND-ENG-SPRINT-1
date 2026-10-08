@@ -42,7 +42,7 @@ Bounded endpoints, redacted diagnostic logs and deliberate client errors.
 
 ### 2. Make the client honest during failure (`C05.1`)
 
-- [ ] Exercise 401, validation failure, empty data and a stopped API. Preserve useful filter state, label errors, disable an in-flight action and offer a retry. Do not automatically retry event creation in a way that hides its identity.
+- [ ] Exercise 401, a 400 response, empty data and a stopped API on the existing login/list/detail interface. Preserve useful filter state, label errors, disable an in-flight login or navigation action and offer a retry for failed reads. Event submission stays in the API/simulator; no event-entry form is required. Do not add automatic write retries that hide an event's identity.
 
 **Primary path:** `students/<student-id>/week-10/client/src/App.tsx`.
 

@@ -52,7 +52,7 @@ An evidence-led repair, an explained query plan and a corrected runbook.
 
 ### 3. Rehearse the clean-start handover (`E11.2`)
 
-- [ ] Give a peer the repository and current runbook. Use a fresh named disposable database and npm ci. Watch them start API/UI, migrate, seed and send a fixture without verbal shortcuts. Record and fix confusing instructions.
+- [ ] Draft week-15/delivery/runbook.md from your existing NOTES.md and wiring instructions, then give a peer the repository and that runbook. Use a fresh named disposable database and npm ci. Watch them migrate, seed, start API/UI and send a fixture without verbal shortcuts. Record and fix confusing instructions; continue the same runbook in Week 15.
 
 **Primary path:** `students/<student-id>/week-14/delivery/clean-start-notes.md`.
 

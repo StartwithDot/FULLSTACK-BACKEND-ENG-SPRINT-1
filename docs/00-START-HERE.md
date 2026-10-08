@@ -4,9 +4,9 @@ The cohort builds MerchantDesk, an application that records synthetic payment ev
 
 ## Your first session
 
-1. Follow sections 1-3 of [Windows setup](02-windows-setup.md).
-2. Run `npm.cmd ci` and `npm.cmd run check` from the repository root.
-3. Read the [student guide](03-student-guide.md).
+1. Install Git, an editor and Node using sections 1-2 of [Windows setup](02-windows-setup.md).
+2. Follow **Set up GitHub** in the [student guide](03-student-guide.md) to fork and clone the repository. Run `npm.cmd ci` inside that cloned folder.
+3. Return to Windows setup for `setup:check`, `check` and the section 3 shell checks, then read the student guide's weekly workflow.
 4. Find your BE number in [students/](../students/README.md).
 5. Open `week-01/problem_statement.md` in your folder and follow its task link.
 

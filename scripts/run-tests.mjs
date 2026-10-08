@@ -1,7 +1,5 @@
 import { spawn } from 'node:child_process';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { findTests } from './test-files.mjs';
+import { findSuiteTests } from './test-files.mjs';
 import { parseStudentId, testDatabaseUrl } from './student-context.mjs';
 
 try {
@@ -27,21 +25,7 @@ try {
     environment.DATABASE_URL = environment.TEST_DATABASE_URL;
   }
 
-  const directories = student
-    ? [path.resolve('students', student)]
-    : [
-        fileURLToPath(new URL('../shared/api/test/', import.meta.url)),
-        ...(database
-          ? []
-          : [fileURLToPath(new URL('./test/', import.meta.url))]),
-      ];
-  const files = (
-    await Promise.all(
-      directories.map((directory) => findTests(directory, database)),
-    )
-  )
-    .flat()
-    .sort();
+  const files = await findSuiteTests(process.cwd(), student, database);
   if (!files.length)
     throw new Error(
       'No ' +

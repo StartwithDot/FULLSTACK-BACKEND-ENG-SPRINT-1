@@ -31,7 +31,7 @@
           "learn": "Values, variables, objects, console output and the TS/JS relationship",
           "resources": ["ts", "js"],
           "instructions": "After npm ci, use the fixture at fixtures/events.json. Begin with one object and print its event ID, kind and amount_minor. Add a function that returns that summary. Record the run command in NOTES.md next to the script. Do not print credentials or customer data.",
-          "proof": "npm run practice -- students/BE01/week-01/typescript/inspector.ts runs after replacing BE01. Explain that Node executes JavaScript and TypeScript checks types before execution.",
+          "proof": "npm.cmd run practice -- students/BE01/week-01/typescript/inspector.ts runs after replacing BE01. Explain that tsx runs the code without typechecking; npm.cmd run typecheck is the separate compiler check.",
           "trap": "You do not need arrays, async, React or a database to finish this first program."
         },
         {
@@ -71,7 +71,7 @@
           "learn": "Primitive types, arrays, object types, branches and iteration",
           "resources": ["types", "js"],
           "instructions": "Define an event type using the actual fixture fields. Iterate over several events, select captured payments and count them. Compare a loop with filter. Explain one case where a missing value differs from zero.",
-          "proof": "The captured count matches the fixture and an intentionally wrong assignment is rejected by TypeScript.",
+          "proof": "The captured count matches the fixture. npm.cmd run typecheck rejects an intentionally wrong assignment; restore valid code and rerun successfully before committing.",
           "trap": "Type annotations do not validate JSON received from another process."
         },
         {
@@ -327,7 +327,7 @@
           "path": "week-07/database/deduplication.sql",
           "learn": "Composite uniqueness, ON CONFLICT and concurrent requests",
           "resources": ["constraints", "conflict"],
-          "instructions": "Add the unique key (merchant_id, provider_event_id) through a new migration. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together. Keep the stated SQL artifact and include the applied forward migration as week-06/database/migrations/002-event-identity.sql in the same task commit.",
+          "instructions": "Inspect existing rows for duplicate merchant/provider identities before adding the unique key (merchant_id, provider_event_id) through a new migration. If duplicates exist, preserve them and agree an explicit reconciliation with the reviewer; do not silently delete or reset. Test a fresh schema and the upgrade fixture. Define identical repeat as 200 with the existing ID, and changed content under the same identity as 409. Use an atomic insert/conflict path. Add a small test that starts two identical requests together. Keep the stated SQL artifact and include the applied forward migration as week-06/database/migrations/002-event-identity.sql in the same task commit.",
           "proof": "Sequential and overlapping identical requests leave one row; the same ID with changed agreed fields returns 409 and keeps the first record.",
           "trap": "An in-process Set or pre-insert check alone does not protect concurrent database writes."
         },
@@ -532,8 +532,8 @@
           "path": "week-10/client/src/api.ts",
           "learn": "Fetch, effects, loading/error/empty states and cancellation",
           "resources": ["fetch", "effect"],
-          "instructions": "Replace static reads with relative /api fetch calls. Check response.ok and validate the expected response shape at the client boundary. Model loading, empty, data and error states explicitly. Abort superseded requests and prevent stale results from overwriting newer filters.",
-          "proof": "The UI displays database records, reports an HTTP failure and keeps the newest filter result under a deliberate delayed response.",
+          "instructions": "Replace static reads with relative /api fetch calls using docs/04-api-and-security-contract.md. Add next/previous page controls using the returned limit/offset, reset offset when the filter changes, and let the operator inspect one selected event through /api/events/:id. Check response.ok and validate the expected response shape at the client boundary. Model loading, empty, data and error states explicitly. Abort superseded requests and prevent stale list/detail results from overwriting newer selections. No frontend router is needed.",
+          "proof": "With more records than one page, a peer pages forward/back, filters and inspects an owned event. The UI reports an HTTP failure and keeps the newest filter/detail result under a deliberate delayed response.",
           "trap": "An effect is not a place to start unlimited requests or ignore cleanup."
         },
         {
@@ -543,8 +543,8 @@
           "path": "week-10/client/src/App.tsx",
           "learn": "Controlled credentials, cookie sessions and authentication UX",
           "resources": ["state", "fetch"],
-          "instructions": "Add a small login form and logout action using the protected API. Rely on the HttpOnly cookie; do not copy tokens into localStorage. Refresh /api/me on startup, return to login on 401, and use only relative /api paths through the proxy.",
-          "proof": "Login, page refresh, expired session and logout have deliberate UI states. Another merchant never appears in the list.",
+          "instructions": "Add a small login form and logout action using the protected API. Rely on the HttpOnly cookie; do not copy tokens into localStorage. Refresh /api/me on startup, return to login on 401, and use only relative /api paths through the proxy. Clear merchant records and cancel/ignore pending list/detail results when logging out, losing authentication or switching operators.",
+          "proof": "Login, page refresh, expired session and logout have deliberate UI states. Delay a merchant A request, switch to merchant B, then release the old response: no A records or detail may reappear.",
           "trap": "A successful login response does not replace server-side authorization on later calls."
         },
         {
@@ -645,7 +645,7 @@
           "path": "week-10/client/src/App.tsx",
           "learn": "Recoverable errors, accessible feedback and duplicate-submit prevention",
           "resources": ["react", "fetch"],
-          "instructions": "Exercise 401, validation failure, empty data and a stopped API. Preserve useful filter state, label errors, disable an in-flight action and offer a retry. Do not automatically retry event creation in a way that hides its identity.",
+          "instructions": "Exercise 401, a 400 response, empty data and a stopped API on the existing login/list/detail interface. Preserve useful filter state, label errors, disable an in-flight login or navigation action and offer a retry for failed reads. Event submission stays in the API/simulator; no event-entry form is required. Do not add automatic write retries that hide an event's identity.",
           "proof": "A peer can distinguish not signed in, no matching records and a failed request; retry does not invent extra events.",
           "trap": "Do not show a success toast before checking the response."
         },
@@ -707,7 +707,7 @@
           "path": "week-14/delivery/clean-start-notes.md",
           "learn": "Setup instructions, fresh state and reproducibility",
           "resources": ["setup"],
-          "instructions": "Give a peer the repository and current runbook. Use a fresh named disposable database and npm ci. Watch them start API/UI, migrate, seed and send a fixture without verbal shortcuts. Record and fix confusing instructions.",
+          "instructions": "Draft week-15/delivery/runbook.md from your existing NOTES.md and wiring instructions, then give a peer the repository and that runbook. Use a fresh named disposable database and npm ci. Watch them migrate, seed, start API/UI and send a fixture without verbal shortcuts. Record and fix confusing instructions; continue the same runbook in Week 15.",
           "proof": "A non-author gets to the protected event screen using written commands; missing steps are corrected.",
           "trap": "Do not delete or reset a personal or shared database to make the rehearsal look clean."
         }

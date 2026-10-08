@@ -78,6 +78,8 @@ npm.cmd run dev:student -- BE01
 
 The migration command creates the dedicated lab_be01 schema in the test database. Create merchants with an early synthetic seed before inserting events; Week 8 extends that seed with operators. Seed commands read configuration locally, are documented in your NOTES.md and never print credentials.
 
+Before Week 7's uniqueness migration, inspect your existing event rows for repeated merchant/provider identities. Earlier labs may already contain duplicates. Do not silently delete rows or reset a database to make ADD UNIQUE pass: preserve the originals, agree a reconciliation for identical versus conflicting groups with the reviewer, and record it in the forward migration. Test both a fresh schema and an upgrade from a small pre-Week-7 fixture. This is separate from preventing new concurrent duplicates.
+
 Database tests create their own random test schema, apply the same migrations there and inject that repository into createApp. They must not clean the persistent lab schema or depend on someone else's seeded records. Close apps/pools and remove only the namespace created by that test.
 
 ## Run all your authored tests

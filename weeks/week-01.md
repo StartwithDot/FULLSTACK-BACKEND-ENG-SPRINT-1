@@ -40,7 +40,7 @@ A reviewed brief, a safe event summary, and one authored pull request.
 
 **Primary path:** `students/<student-id>/week-01/typescript/inspector.ts`.
 
-**Proof for review:** npm run practice -- students/BE01/week-01/typescript/inspector.ts runs after replacing BE01. Explain that Node executes JavaScript and TypeScript checks types before execution.
+**Proof for review:** npm.cmd run practice -- students/BE01/week-01/typescript/inspector.ts runs after replacing BE01. Explain that tsx runs the code without typechecking; npm.cmd run typecheck is the separate compiler check.
 
 **Known trap:** You do not need arrays, async, React or a database to finish this first program.
 

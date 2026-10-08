@@ -17,3 +17,20 @@ export async function findTests(directory, database) {
   }
   return files.sort();
 }
+
+export async function findSuiteTests(root, student, database) {
+  const directories = student
+    ? [path.join(root, 'students', student)]
+    : [
+        path.join(root, 'shared/api/test'),
+        path.join(root, 'students'),
+        ...(database ? [] : [path.join(root, 'scripts/test')]),
+      ];
+  return (
+    await Promise.all(
+      directories.map((directory) => findTests(directory, database)),
+    )
+  )
+    .flat()
+    .sort();
+}
