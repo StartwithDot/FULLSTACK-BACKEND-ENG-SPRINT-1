@@ -1,6 +1,6 @@
 # Shared build plan
 
-Every student attempts the week's core tasks. The assigned build pair promotes reviewed work into the shared application; a non-author reviews or reproduces it. Use the [rotation plan](06-team-roles.md) and the week's rotation log.
+Every student completes the week's core practice. Available students own different bounded contributions to the shared application, with non-author review or reproduction. Use the [shared-project responsibilities](06-team-roles.md) and the week's contribution log to assign paths, tests, interfaces and integration ownership; there are no fixed pairs. Rotate responsibilities and reassign unavailable owners without blocking individual practice.
 
 | Week                      | Shared paths                                                                                                          | Required outcome                                                                                                      |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |

@@ -56,16 +56,16 @@ A reviewed brief, a safe event summary, and one authored pull request.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/delivery/brief.md and shared/delivery/context.md`. Record the non-author review or witness in the [Week 1 rotation log](../shared/delivery/rotations/week-01.md).
+Assigned task owners contribute reviewed work to `shared/delivery/brief.md and shared/delivery/context.md`. Record the non-author review or witness in the [Week 1 contribution log](../shared/delivery/rotations/week-01.md).
 
 ## Milestone: Agreed client brief
 
-A non-author reproduces this outcome and records the commands and results in the rotation log before the group advances.
+Record this shared milestone as complete only after a non-author reproduces the outcome and records commands and results in the contribution log.
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 2](week-02.md).

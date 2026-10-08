@@ -22,12 +22,20 @@ for (const [index, week] of data.weeks.entries()) {
   );
   const canonical = 'weeks/week-' + number + '.md';
   const text = readFileSync(canonical, 'utf8');
-  assert.ok(existsSync('shared/delivery/rotations/week-' + number + '.md'));
+  const contribution = readFileSync(
+    'shared/delivery/rotations/week-' + number + '.md',
+    'utf8',
+  );
+  assert.ok(contribution.includes('weekly contribution record'));
+  assert.match(contribution, /\|\s*Owner\s*\|/);
+  assert.match(contribution, /\|\s*Non-author reviewer\s*\|/);
+  assert.ok(!/Build pair:|Review\/witness pair:/.test(contribution));
   for (const track of week.tracks) assert.ok(data.tracks[track]);
   for (const task of week.tasks) {
     assert.ok(!ids.has(task.id), 'Duplicate task: ' + task.id);
     ids.add(task.id);
     assert.ok(text.includes(task.id), 'Missing weekly task: ' + task.id);
+    assert.ok(contribution.includes(task.id), 'Missing log task: ' + task.id);
     for (const key of ['instructions', 'proof', 'trap', 'path']) {
       assert.ok(
         text.includes(task[key]),
@@ -56,11 +64,16 @@ const official =
 const guide = readFileSync('docs/03-student-guide.md', 'utf8');
 const publication = readFileSync('admin/publishing.md', 'utf8');
 assert.ok(guide.includes(official + '.git'));
+assert.ok(guide.includes('git clone ' + official + '.git'));
+assert.ok(guide.includes('git fetch origin'));
+assert.ok(guide.includes('git merge --ff-only origin/main'));
 assert.ok(
-  guide.includes(
-    'https://github.com/YOUR_USERNAME/FULLSTACK-BACKEND-ENG-SPRINT-1.git',
-  ),
+  !/YOUR_USERNAME|git remote add upstream|git fetch upstream/.test(guide),
 );
+const roles = readFileSync('docs/06-team-roles.md', 'utf8');
+assert.ok(roles.includes('non-author reviewer'));
+assert.ok(roles.includes('reassigns the unfinished task'));
+assert.ok(!/BE01, BE02|Each student builds three times/.test(roles));
 assert.ok(publication.includes(official + '.git'));
 assert.ok(
   !publication.includes(

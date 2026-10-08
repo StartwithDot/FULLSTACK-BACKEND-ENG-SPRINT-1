@@ -247,7 +247,7 @@
           "learn": "Reproduction, diagrams and restart limitations",
           "resources": ["evidence"],
           "instructions": "Have a peer run the simulator -> API -> list flow. Record actual commands, one invalid request and what disappears after restart. Update the architecture with actual local ports.",
-          "proof": "A person outside the build pair reproduces the flow and can explain the persistence gap.",
+          "proof": "A non-author reproduces the flow and can explain the persistence gap.",
           "trap": "Do not claim durable acceptance or a production webhook service from this demonstration."
         }
       ],
@@ -658,7 +658,7 @@
           "resources": ["actions"],
           "instructions": "Explain the committed starter jobs and extend the database suite discovery with your actual .db.test.ts tests. The existing PostgreSQL service runs practice-fixture checks; it is not proof of product migrations. Add a product migration test and demonstrate one deliberately failing check locally and, once published, on a real PR.",
           "proof": "The required commands run from a clean install; a deliberately broken assertion/migration makes the relevant check fail.",
-          "trap": "Do not make every student add a live root workflow. Practise in your folder; only the build pair promotes the shared change."
+          "trap": "Do not make every student add a live root workflow. Practise in your folder; only the assigned task owner promotes the reviewed shared change."
         }
       ],
       "budget": {
@@ -737,7 +737,7 @@
           "path": "week-15/delivery/runbook.md",
           "learn": "Actual architecture, migrations, seed accounts, tests and limitations",
           "resources": ["delivery"],
-          "instructions": "Write the final native-Windows runbook with clone/install, local configuration, database creation, migration/seed, API/UI start, tests, common failures and shutdown. Include a diagram matching actual code and a short next-sprint boundary. Propose the shared root README update in the rotation PR.",
+          "instructions": "Write the final native-Windows runbook with clone/install, local configuration, database creation, migration/seed, API/UI start, tests, common failures and shutdown. Include a diagram matching actual code and a short next-sprint boundary. Propose the shared root README update in the shared-task PR.",
           "proof": "A stranger can find every command, secret variable and dependency; unfinished product work is named, not hidden.",
           "trap": "Do not describe Docker, queues, Rust, deployment or real payments as implemented in Sprint 1."
         },
@@ -759,7 +759,7 @@
           "path": "week-15/delivery/handover.md",
           "learn": "Clean-start proof, authorship and technical explanation",
           "resources": ["evidence", "git"],
-          "instructions": "Have a non-author follow the final runbook and record commands/outcomes. Link your own core task commits/PRs and shared rotation contributions. Write two defensible resume statements about work you actually did and one limitation you can explain. Keep private grading outside this public repository.",
+          "instructions": "Have a non-author follow the final runbook and record commands/outcomes. Link your own core task commits/PRs and shared-project contributions. Write two defensible resume statements about work you actually did and one limitation you can explain. Keep private grading outside this public repository.",
           "proof": "The final witness succeeds using the runbook, core tests pass, and individual contributions are attributable.",
           "trap": "Do not claim production ownership, Rust expertise or smart-contract work from this sprint."
         }

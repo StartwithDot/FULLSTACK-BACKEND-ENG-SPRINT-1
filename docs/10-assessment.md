@@ -14,7 +14,9 @@ The 45 tasks have explicit proof and traps in their week files. All students fol
 | 9    | Protected merchant flow | A working authenticated event API with cross-merchant rejection. A non-author reproduces it.                     |
 | 15   | Independent handover    | A reproducible local product, an honest demo and attributable contribution evidence. A non-author reproduces it. |
 
-For a task PR include ID, path, run command/result, one failure case, reasoning and peer-review link. Do not put credentials in output. For a shared PR include migration/API changes, the witness and the weekly rotation log.
+For a task PR include ID, path, run command/result, one failure case, reasoning and peer-review link. Do not put credentials in output. For a shared PR include its agreed scope, migration/API changes, non-author evidence and the weekly contribution log. A maintainer can provide the review or witness when an assigned peer is unavailable.
+
+Assess individual core proofs separately from shared ownership. Every student must demonstrate every core skill; contributing one product module alone is not evidence of learning the others. Use actual implementation, test and review records to rotate opportunities across active students. An absent owner's shared task can be reassigned without withholding another student's completed individual proof.
 
 The starter check proves that the supplied learning environment compiles and runs. It does not prove student features exist. The Week 13 database suite must include actual student migration and ownership tests before it can prove those behaviors.
 

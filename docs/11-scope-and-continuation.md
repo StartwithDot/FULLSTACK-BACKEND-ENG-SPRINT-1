@@ -4,7 +4,7 @@
 
 - 15 weeks, 10 Windows learners and 45 core tasks.
 - About five planned hours weekly, including setup, review and shared contribution.
-- One MerchantDesk application, individual practice and rotating shared-build responsibility.
+- One MerchantDesk application, common individual practice and flexible shared-task ownership with rotating responsibilities.
 - TypeScript/JavaScript, Node/Fastify, PostgreSQL/SQL and a small React interface.
 - Free local tooling; no paid account, Docker, WSL, cloud subscription or real payment data required.
 
@@ -20,7 +20,7 @@ This is application-development foundations. Keep the agreed event kinds, one cu
 | Weekly explanation and revision                   |      30 |
 | Total                                             |     300 |
 
-Task times are planning estimates. Builders reuse proven individual work for promotion. Report concrete blockers and seek mentor review; do not omit required proofs to fit the estimate. Reduce cosmetic polish or optional repetition before changing the essential learning path.
+Task times are planning estimates. Shared-task owners reuse proven individual work for promotion; others contribute focused tests, integration evidence or review. Unavailable owners are reassigned rather than becoming prerequisites for everyone's practice. Report concrete blockers and seek mentor review; do not omit required proofs to fit the estimate. Reduce cosmetic polish or optional repetition before changing the essential learning path.
 
 ## Frontend depth
 

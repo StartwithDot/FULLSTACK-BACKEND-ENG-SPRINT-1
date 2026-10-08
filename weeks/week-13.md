@@ -58,16 +58,16 @@ Bounded endpoints, redacted diagnostic logs and deliberate client errors.
 
 **Proof for review:** The required commands run from a clean install; a deliberately broken assertion/migration makes the relevant check fail.
 
-**Known trap:** Do not make every student add a live root workflow. Practise in your folder; only the build pair promotes the shared change.
+**Known trap:** Do not make every student add a live root workflow. Practise in your folder; only the assigned task owner promotes the reviewed shared change.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/api/src/app.ts, shared/api/test/, shared/web/src/App.tsx and .github/workflows/checks.yml`. Record the non-author review or witness in the [Week 13 rotation log](../shared/delivery/rotations/week-13.md).
+Assigned task owners contribute reviewed work to `shared/api/src/app.ts, shared/api/test/, shared/web/src/App.tsx and .github/workflows/checks.yml`. Record the non-author review or witness in the [Week 13 contribution log](../shared/delivery/rotations/week-13.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 14](week-14.md).

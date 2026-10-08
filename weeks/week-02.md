@@ -56,12 +56,12 @@ Typed event data, real SQL answers and an explicit input contract.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/delivery/event-contract.md and shared/database/practice-notes.md`. Record the non-author review or witness in the [Week 2 rotation log](../shared/delivery/rotations/week-02.md).
+Assigned task owners contribute reviewed work to `shared/delivery/event-contract.md and shared/database/practice-notes.md`. Record the non-author review or witness in the [Week 2 contribution log](../shared/delivery/rotations/week-02.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 3](week-03.md).

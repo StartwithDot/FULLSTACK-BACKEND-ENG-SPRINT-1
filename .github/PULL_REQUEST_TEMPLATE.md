@@ -1,8 +1,9 @@
 ## Task IDs and zone
 
 IDs:
-Own student folder or assigned shared rotation:
+Own student folder or assigned shared task:
 Week:
+Shared task owner and non-author reviewer (if applicable):
 
 ## Evidence
 

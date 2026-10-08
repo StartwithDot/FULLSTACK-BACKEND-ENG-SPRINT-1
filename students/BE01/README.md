@@ -20,4 +20,4 @@ Open the current week's problem statement. It links to the canonical instruction
 - [Week 14](week-14/problem_statement.md): Investigate, repair and rehearse a clean start
 - [Week 15](week-15/problem_statement.md): Demonstrate and hand over the merchant application
 
-Read the [student guide](../../docs/03-student-guide.md). The rotation assigns shared build/review work, not a student specialisation.
+Read the [student guide](../../docs/03-student-guide.md). Weekly assignments rotate shared implementation, test and review responsibilities; every student still learns all core skills.

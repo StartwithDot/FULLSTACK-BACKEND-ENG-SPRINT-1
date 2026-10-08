@@ -62,12 +62,12 @@ Database-backed duplicate behavior and a stable, bounded listing contract.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/database/migrations/002-event-identity.sql, shared/api/src/repository.ts and shared/api/src/routes/events.ts`. Record the non-author review or witness in the [Week 7 rotation log](../shared/delivery/rotations/week-07.md).
+Assigned task owners contribute reviewed work to `shared/database/migrations/002-event-identity.sql, shared/api/src/repository.ts and shared/api/src/routes/events.ts`. Record the non-author review or witness in the [Week 7 contribution log](../shared/delivery/rotations/week-07.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 8](week-08.md).

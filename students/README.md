@@ -17,4 +17,4 @@ Ten students, one essential learning path. Every student does all core skills. T
 
 Open your current `week-NN/problem_statement.md`. The actual tasks live in [weeks/](../weeks/week-01.md) and are linked, not duplicated 10 times.
 
-Only the rotating build pair writes to [shared/](../shared/README.md). Others still practise the same skill, review the product change or witness its proof.
+Everyone practises the same skills here. Different students own bounded contributions to the single product in [shared/](../shared/README.md), with rotating implementation, test and review responsibilities. Use the [responsibility guide](../docs/06-team-roles.md); no fixed pair or absent student is a prerequisite for your practice.

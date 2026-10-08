@@ -62,12 +62,12 @@ An evidence-led repair, an explained query plan and a corrected runbook.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/delivery/incident.md, shared/database/migrations/ and shared/delivery/runbook.md`. Record the non-author review or witness in the [Week 14 rotation log](../shared/delivery/rotations/week-14.md).
+Assigned task owners contribute reviewed work to `shared/delivery/incident.md, shared/database/migrations/ and shared/delivery/runbook.md`. Record the non-author review or witness in the [Week 14 contribution log](../shared/delivery/rotations/week-14.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 15](week-15.md).

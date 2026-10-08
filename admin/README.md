@@ -8,11 +8,13 @@ Student instructions start at the root README and canonical week files. This dir
 
 ## Run the cohort
 
-Confirm each week's build/review assignment. Review authentication, ownership, duplicate handling and migration safety directly. Support concrete blockers without removing core proofs. Keep private grades, answer keys, credentials and individual support records outside this public repository.
+Assign bounded shared tasks and non-author reviewers to available students each week. Rotate implementation, test and review ownership using actual contribution records; no permanent specialists or fixed BE-number pairs. Reassign unavailable owners, preserving authored work and keeping individual practice moving. Review authentication, ownership, duplicate handling and migration safety directly. Support concrete blockers without removing core proofs. Keep private grades, answer keys, credentials and individual support records outside this public repository.
+
+The owner/admin grants students Write access for task branches in the official repository and configures main-branch checks and review rules. A collaborator with Write access can review/merge subject to those rules; managing access and branch protections normally requires Admin. The maintainer-merge policy in the student guide needs matching repository configuration if it is to be technically enforced. Do not claim this documentation has configured permissions.
 
 ## Maintain the curriculum
 
-The week files are the student-facing instructions. The root curriculum.json records their task metadata for automated checks; it is not another student syllabus. Update both when changing a task. Preserve published task IDs and keep student pointers and rotation logs aligned.
+The week files are the student-facing instructions. The root curriculum.json records their task metadata for automated checks; it is not another student syllabus. Update both when changing a task. Preserve published task IDs and keep student pointers and contribution logs aligned.
 
 Run npm.cmd run check for every change and npm.cmd run test:db for database-related work. The GitHub workflow exercises Windows/Linux starter checks and PostgreSQL tests; inspect the hosted run after publishing. Branch rules and access permissions are configured by the repository owner.
 

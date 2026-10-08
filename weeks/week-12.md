@@ -62,12 +62,12 @@ A coherent test matrix, one exercised transaction and corrected weak cases.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/api/test/, shared/database/README.md and shared/delivery/test-matrix.md`. Record the non-author review or witness in the [Week 12 rotation log](../shared/delivery/rotations/week-12.md).
+Assigned task owners contribute reviewed work to `shared/api/test/, shared/database/README.md and shared/delivery/test-matrix.md`. Record the non-author review or witness in the [Week 12 contribution log](../shared/delivery/rotations/week-12.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 13](week-13.md).

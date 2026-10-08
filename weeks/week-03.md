@@ -56,12 +56,12 @@ A reusable validation exercise, a relational model and tests that detect a bug.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/delivery/data-model.md and shared/api/test/contract.test.ts`. Record the non-author review or witness in the [Week 3 rotation log](../shared/delivery/rotations/week-03.md).
+Assigned task owners contribute reviewed work to `shared/delivery/data-model.md and shared/api/test/contract.test.ts`. Record the non-author review or witness in the [Week 3 contribution log](../shared/delivery/rotations/week-03.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 4](week-04.md).

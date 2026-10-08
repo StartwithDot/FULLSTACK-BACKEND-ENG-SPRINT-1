@@ -4,7 +4,7 @@ Use PowerShell consistently. Commands below use `npm.cmd` to avoid PowerShell bl
 
 ## 1. Git and editor (Week 1)
 
-Install [Git for Windows](https://git-scm.com/downloads/win) and a free editor such as [VS Code](https://code.visualstudio.com/). Use a GitHub account for your fork and pull requests.
+Install [Git for Windows](https://git-scm.com/downloads/win) and a free editor such as [VS Code](https://code.visualstudio.com/). Use a GitHub account for your collaborator invitation, task branches and pull requests.
 
 ```powershell
 git --version

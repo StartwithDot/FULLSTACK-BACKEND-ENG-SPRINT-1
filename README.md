@@ -17,7 +17,7 @@ No real payments are processed. MerchantDesk is an event-recording application, 
 
 ## How learning works
 
-Every student follows the same curriculum. A project requirement introduces a concept; students practise it individually, test the result and review a peer's work. A rotating pair promotes reviewed work into one shared application.
+Every student follows the same curriculum. A project requirement introduces a concept; students practise it individually, test the result and review a peer's work. Available students take small, assigned contributions to one shared application. Implementation, test and review responsibilities rotate; there are no fixed build pairs or permanent specialists. See the [shared-project responsibilities](docs/06-team-roles.md).
 
 | Track                        | Focus                                                        |
 | ---------------------------- | ------------------------------------------------------------ |

@@ -1,14 +1,27 @@
-# Week 4: rotation record
+# Week 4: weekly contribution record
 
-Build pair: BE07, BE08.
-Review/witness pair: BE09, BE10.
-
-These roles rotate. Everyone completes the same individual core tasks.
+Everyone completes the same individual core tasks. Assign shared work to available students using the [responsibility guide](../../../docs/06-team-roles.md), not a fixed pair schedule.
 
 - Shared contribution: shared/api/src/app.ts and shared/delivery/api-contract.md
 - Task IDs: B01.1, T04.1, E04.1
-- Actual PR or local commit:
-- Non-author run command and outcome:
-- Open issue and next responsible action:
+- Log coordinator:
 
-Fill in real evidence after the contribution. Do not mark a milestone completed because the role was assigned.
+## Task ownership
+
+Add one row per bounded shared task. Rotate implementation, test and review responsibilities across the sprint.
+
+| Shared task / paths | Task ID | Owner | Non-author reviewer | Required proof | Branch / PR | State |
+| ------------------- | ------- | ----- | ------------------- | -------------- | ----------- | ----- |
+|                     |         |       |                     |                |             |       |
+
+Use Available, In progress, In review or Merged. Assignment is not completion; link the passing proof and non-author review before recording a task as complete.
+
+## Evidence and handover
+
+- Actual PRs and authored commits:
+- Non-author run command and outcome:
+- Integration result or shared milestone proof:
+- Open task, current owner and next action:
+- Reassignment: task, preserved branch/PR, new owner and technical next step:
+
+Keep personal reasons for absence and private feedback out of this log. A maintainer can reassign an unavailable owner/reviewer; individual practice continues. Do not invent completed work or witnesses.

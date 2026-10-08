@@ -56,22 +56,22 @@ A simulator request reaches the API and is visible through a list endpoint.
 
 **Primary path:** `students/<student-id>/week-05/delivery/first-flow.md`.
 
-**Proof for review:** A person outside the build pair reproduces the flow and can explain the persistence gap.
+**Proof for review:** A non-author reproduces the flow and can explain the persistence gap.
 
 **Known trap:** Do not claim durable acceptance or a production webhook service from this demonstration.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/api/src/routes/events.ts, shared/simulator/send-event.ts and shared/delivery/first-flow.md`. Record the non-author review or witness in the [Week 5 rotation log](../shared/delivery/rotations/week-05.md).
+Assigned task owners contribute reviewed work to `shared/api/src/routes/events.ts, shared/simulator/send-event.ts and shared/delivery/first-flow.md`. Record the non-author review or witness in the [Week 5 contribution log](../shared/delivery/rotations/week-05.md).
 
 ## Milestone: First local event flow
 
-A non-author reproduces this outcome and records the commands and results in the rotation log before the group advances.
+Record this shared milestone as complete only after a non-author reproduces the outcome and records commands and results in the contribution log.
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 6](week-06.md).

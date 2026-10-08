@@ -1,6 +1,6 @@
 # Publishing cohort changes
 
-For maintainers and write collaborators. Students follow the [student guide](../docs/03-student-guide.md) and push to their own forks.
+For maintainers and write collaborators. Students follow the [student guide](../docs/03-student-guide.md), push task branches to the official repository and open PRs into main.
 
 ## Official repository
 

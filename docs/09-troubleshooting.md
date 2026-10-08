@@ -27,7 +27,7 @@ Ask with what you intended, the exact command, the error and what you tried. Red
 
 ## Continuing-app checks
 
-- Repository not found when cloning: use the fork and official upstream URLs in the student guide.
+- Repository not found or branch push denied: check the official origin URL and accepted collaborator invitation in the student guide; ask the owner/admin to confirm Write access. Do not share credentials.
 - New route does not run: register its module in your original week-04/api/app.ts. Start dev:student, not a new weekly server.
 - Fastify reports an existing route: remove the Week 4 demonstration GET before registering the Week 5 event module.
 - Individual database sees shared data or no tables: dev:student uses TEST_DATABASE_URL and DATABASE_SCHEMA=lab_beXX. Apply your original week-06 migration directory and pass that schema to the repository.

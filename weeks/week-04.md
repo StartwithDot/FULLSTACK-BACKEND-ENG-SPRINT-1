@@ -62,12 +62,12 @@ A tiny HTTP application, observable async behavior and an API plan.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/api/src/app.ts and shared/delivery/api-contract.md`. Record the non-author review or witness in the [Week 4 rotation log](../shared/delivery/rotations/week-04.md).
+Assigned task owners contribute reviewed work to `shared/api/src/app.ts and shared/delivery/api-contract.md`. Record the non-author review or witness in the [Week 4 contribution log](../shared/delivery/rotations/week-04.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 5](week-05.md).

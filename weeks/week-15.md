@@ -32,7 +32,7 @@ A reproducible local product, an honest demo and attributable contribution evide
 
 ### 1. Finish the runbook and architecture (`E12.1`)
 
-- [ ] Write the final native-Windows runbook with clone/install, local configuration, database creation, migration/seed, API/UI start, tests, common failures and shutdown. Include a diagram matching actual code and a short next-sprint boundary. Propose the shared root README update in the rotation PR.
+- [ ] Write the final native-Windows runbook with clone/install, local configuration, database creation, migration/seed, API/UI start, tests, common failures and shutdown. Include a diagram matching actual code and a short next-sprint boundary. Propose the shared root README update in the shared-task PR.
 
 **Primary path:** `students/<student-id>/week-15/delivery/runbook.md`.
 
@@ -52,7 +52,7 @@ A reproducible local product, an honest demo and attributable contribution evide
 
 ### 3. Complete the independent start and contribution record (`E12.2`)
 
-- [ ] Have a non-author follow the final runbook and record commands/outcomes. Link your own core task commits/PRs and shared rotation contributions. Write two defensible resume statements about work you actually did and one limitation you can explain. Keep private grading outside this public repository.
+- [ ] Have a non-author follow the final runbook and record commands/outcomes. Link your own core task commits/PRs and shared-project contributions. Write two defensible resume statements about work you actually did and one limitation you can explain. Keep private grading outside this public repository.
 
 **Primary path:** `students/<student-id>/week-15/delivery/handover.md`.
 
@@ -62,16 +62,16 @@ A reproducible local product, an honest demo and attributable contribution evide
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/delivery/runbook.md, shared/delivery/final-architecture.md, shared/delivery/demo.md and README.md`. Record the non-author review or witness in the [Week 15 rotation log](../shared/delivery/rotations/week-15.md).
+Assigned task owners contribute reviewed work to `shared/delivery/runbook.md, shared/delivery/final-architecture.md, shared/delivery/demo.md and README.md`. Record the non-author review or witness in the [Week 15 contribution log](../shared/delivery/rotations/week-15.md).
 
 ## Milestone: Independent handover
 
-A non-author reproduces this outcome and records the commands and results in the rotation log before the group advances.
+Record this shared milestone as complete only after a non-author reproduces the outcome and records commands and results in the contribution log.
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: carry the reviewed API, schema, interface and limitations into the Rust-focused Sprint 2.

@@ -62,12 +62,12 @@ Typed UI components and bounded safe API responses.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/web/src/App.tsx, shared/web/src/EventList.tsx and shared/api/src/routes/events.ts`. Record the non-author review or witness in the [Week 10 rotation log](../shared/delivery/rotations/week-10.md).
+Assigned task owners contribute reviewed work to `shared/web/src/App.tsx, shared/web/src/EventList.tsx and shared/api/src/routes/events.ts`. Record the non-author review or witness in the [Week 10 contribution log](../shared/delivery/rotations/week-10.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 11](week-11.md).

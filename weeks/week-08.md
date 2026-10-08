@@ -62,12 +62,12 @@ Login, expiry and logout with protected API access.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/database/migrations/003-operators.sql, shared/api/src/auth.ts and shared/delivery/security-model.md`. Record the non-author review or witness in the [Week 8 rotation log](../shared/delivery/rotations/week-08.md).
+Assigned task owners contribute reviewed work to `shared/database/migrations/003-operators.sql, shared/api/src/auth.ts and shared/delivery/security-model.md`. Record the non-author review or witness in the [Week 8 contribution log](../shared/delivery/rotations/week-08.md).
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 9](week-09.md).

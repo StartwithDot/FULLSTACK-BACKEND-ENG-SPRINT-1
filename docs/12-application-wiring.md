@@ -2,7 +2,7 @@
 
 From Week 4 onward, keep one MerchantDesk API entry point in students/YOUR_ID/week-04/api. Later week folders hold modules and evidence used by that same app, not a separate server each week.
 
-The shared product still lives in shared/. Promote a reviewed module there only on your build rotation. Do not copy a completed shared solution back into your practice app.
+The shared product still lives in shared/. Promote a reviewed module there only for your assigned shared task, with an agreed file scope and non-author review. Continue your practice app if another shared task is delayed; it must not depend on that person's unfinished branch. Do not copy a completed shared solution back into your practice app.
 
 ## Copy the immutable API shell once in Week 4
 

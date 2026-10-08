@@ -62,16 +62,16 @@ A working authenticated event API with cross-merchant rejection.
 
 ## Shared contribution
 
-The build pair promotes reviewed work into `shared/api/src/routes/events.ts, shared/api/test/ownership.db.test.ts and shared/simulator/send-event.ts`. Record the non-author review or witness in the [Week 9 rotation log](../shared/delivery/rotations/week-09.md).
+Assigned task owners contribute reviewed work to `shared/api/src/routes/events.ts, shared/api/test/ownership.db.test.ts and shared/simulator/send-event.ts`. Record the non-author review or witness in the [Week 9 contribution log](../shared/delivery/rotations/week-09.md).
 
 ## Milestone: Protected merchant flow
 
-A non-author reproduces this outcome and records the commands and results in the rotation log before the group advances.
+Record this shared milestone as complete only after a non-author reproduces the outcome and records commands and results in the contribution log.
 
 ## Completion checklist
 
 - [ ] Three focused task-ID commits with the required proof
-- [ ] Peer review and assigned shared-build or witness work completed
+- [ ] Peer review and assigned shared task or witness work completed
 - [ ] One implementation decision and failure case explained
 
 Next: [Week 10](week-10.md).

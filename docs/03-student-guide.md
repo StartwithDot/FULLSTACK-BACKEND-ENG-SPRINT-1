@@ -4,18 +4,19 @@ All ten students complete the same curriculum. Your weekly problem statement poi
 
 ## Set up GitHub
 
-Fork [StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1](https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1), then clone your fork. Replace YOUR_USERNAME:
+Accept the collaborator invitation to [StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1](https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1). The repository owner/admin must arrange Write access before you can push a task branch. Clone the official repository:
 
 ```powershell
-git clone https://github.com/YOUR_USERNAME/FULLSTACK-BACKEND-ENG-SPRINT-1.git
+git clone https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1.git
 Set-Location -LiteralPath "FULLSTACK-BACKEND-ENG-SPRINT-1"
-git remote add upstream https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1.git
 git config user.name "Your Name"
 git config user.email "YOUR_VERIFIED_OR_GITHUB_NOREPLY_EMAIL"
 npm.cmd ci
 ```
 
-Students push to their fork (`origin`) and open PRs to the official cohort (`upstream`). Write collaborators may clone the official repository directly and use `origin` instead of `upstream` when updating main.
+`origin` is the official cohort repository. Push only your named task branches and open PRs into its main branch. Do not push directly to main or merge your own PR; a maintainer handles merging after review and checks. These are cohort rules; the owner/admin configures the GitHub access and branch protections.
+
+If you already have a clone or unfinished work, inspect `git status` and `git remote -v` with a maintainer before changing remotes. Do not run git init again or discard existing work. If branch push is denied, ask the owner/admin to confirm your invitation and Write access; do not request anyone's password or token.
 
 ## Weekly workflow
 
@@ -23,8 +24,8 @@ Start with a clean main branch. Replace the student ID and week below with your 
 
 ```powershell
 git switch main
-git fetch upstream
-git merge --ff-only upstream/main
+git fetch origin
+git merge --ff-only origin/main
 git switch -c be01-week-01
 ```
 
@@ -37,7 +38,7 @@ git commit -m "T01.1 inspect a sandbox event"
 git push -u origin be01-week-01
 ```
 
-One weekly PR may contain the three focused task commits. Include task IDs, test commands/results, a failure case and one explained decision. Review your assigned peer and apply feedback in the same PR.
+On GitHub, open a PR in the official repository with base `main` and compare `be01-week-01`. One weekly individual PR may contain the three focused task commits. Include task IDs, test commands/results, a failure case and one explained decision. Review an assigned peer's work; your own PR needs a non-author reviewer. Apply feedback in the same PR. If your reviewer is unavailable, request another reviewer or a maintainer instead of waiting for a fixed partner.
 
 The primary task path identifies the main artifact. Include necessary companion modules, tests, migrations and notes in the same focused commit. When a task refers to an earlier week, continue that existing application rather than restarting it.
 
@@ -78,6 +79,8 @@ Keep editing this client in later weeks. Stop the shared UI/API before running y
 
 ## Contribute to the shared product
 
-Follow the [rotation plan](06-team-roles.md). Only the assigned build pair promotes reviewed work into `shared/`. Preserve authorship and add a shared suffix to task-ID commits, for example `D03.1 shared add event migration`. Shared code must not import a student's folder.
+Follow the [shared-project responsibilities](06-team-roles.md). Everyone practises all core skills, but the main application is built from different assigned contributions. Each shared task has an available owner, a non-author reviewer, a bounded file scope and required proof. Rotate implementation, test and review responsibilities rather than assigning permanent specialists.
 
-Other students complete the same practice and review or witness the shared result. Promotion reuses proven work; it is not a second application assigned as extra homework. Record real evidence using the [assessment guide](10-assessment.md).
+For an assigned shared task, create a separate branch from current main, such as `be01-week-06-shared-migration`, and open a separate PR into main. Reuse reviewed practice, adapt imports into shared modules and include its focused tests. Preserve authorship and use a task-ID commit such as `D03.1 shared add event migration`. Shared code must not import a student's folder.
+
+Record the actual owner, review and PR in the week's contribution log. If an owner is unavailable, a maintainer reassigns the unfinished task and preserves existing work. Continue your own practice; do not wait for that person's code or copy the shared solution as your answer. Keep the shared slot inside the weekly budget: promotion reuses proven work, not a second unrelated assignment. Record evidence using the [assessment guide](10-assessment.md).

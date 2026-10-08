@@ -1,29 +1,35 @@
-# Team roles and ten-student rotation
+# Shared-project responsibilities
 
-The maintainers protect the shared branch, review shared behavior/security and support blockers. Names/dates can be assigned when the cohort is organised; do not invent them in public student records.
+Everyone learns the same core skills and contributes to one MerchantDesk application. Individual practice proves your learning; the shared product combines different students' reviewed contributions. Nobody is a permanent frontend, SQL, backend or documentation specialist.
 
-## Rotating responsibilities
+## Assign small tasks each week
 
-The build pair promotes the same week's individually practised skill into the product. The next pair reviews or witnesses it. Other students finish the same core tasks and review their assigned peer. Nobody is a permanent frontend, SQL or backend specialist.
+1. Use the week's shared paths and required outcome to identify bounded implementation, test, integration and review tasks. Reuse proven individual work rather than inventing another assignment.
+2. Assign each task an available owner and a non-author reviewer. Record its task ID, file scope, completion proof and PR in the [weekly contribution log](../shared/delivery/rotations/week-01.md). A maintainer can review or witness when a peer is unavailable.
+3. Give every active student a manageable contribution or review. Rotate responsibilities across the sprint so every student owns implementation and tests as well as reviews. Use actual contribution records to balance opportunities, not a fixed BE-number schedule.
+4. Agree interfaces and file ownership before parallel edits. Split a database feature into migration, repository, HTTP integration and tests when useful; do not make ten people edit the same module independently.
+5. Keep one owner responsible for assembling the weekly log from the actual PRs and witness results. Do not have everyone rewrite the same evidence file.
 
-| Weeks     | Build pair | Non-author review/witness pair |
-| --------- | ---------- | ------------------------------ |
-| 1, 6, 11  | BE01, BE02 | BE03, BE04                     |
-| 2, 7, 12  | BE03, BE04 | BE05, BE06                     |
-| 3, 8, 13  | BE05, BE06 | BE07, BE08                     |
-| 4, 9, 14  | BE07, BE08 | BE09, BE10                     |
-| 5, 10, 15 | BE09, BE10 | BE01, BE02                     |
+All students still complete the same individual core tasks. A shared test or review does not replace practising a skill yourself. There is no fixed build pair, permanent review ring or requirement to wait for a particular BE number.
 
-Each student builds three times. Per-week evidence files are in [shared/delivery/rotations](../shared/delivery/rotations/week-01.md), so ten people do not repeatedly collide in one shared log.
+## If an owner or reviewer is unavailable
 
-For individual reviews, use a simple ring: BE01 reviews BE02, BE02 reviews BE03, through BE10 reviewing BE01. Swap a pairing when a conflict of authorship occurs. Builders alternate who makes the main change and who writes its focused tests; both keep their own commits.
+Tell the maintainer which task is affected. Leave the branch/PR, current tests and next step discoverable. The maintainer reassigns the unfinished task or review to an available contributor and updates its log entry. Preserve existing authored commits; do not delete a student's folder or renumber the other students.
 
-The 30-minute shared slot is inside the weekly budget. Rotate the first-pass review lead within the witness pair. Peer review supports learning, but shared auth/ownership/migration changes still need maintainer review.
+Continue individual practice using the supplied fixtures and your own continuing app. An unfinished shared task must not become a hidden prerequisite for that practice. For dependent shared work, replan the task order or have a maintainer cover the required integration; do not claim a missing feature is finished. Reassignment can redistribute work, but it does not require restarting the project.
 
-## Merge and conflict rules
+Keep personal reasons for absence and private feedback outside the public log. Record only the task handover and technical next action.
 
-Use PRs and focused task-ID commits. Avoid squash when preserving each student's authored commits is the cohort goal. Required checks and approvals are configured by the repository owner; do not claim branch protection is active before it is configured.
+## Review and merge
 
-Coordinate file ownership before two contributors edit the same shared module. Do not merge incompatible schema/API decisions and hope a later pair will fix them.
+Use separate task branches and PRs into the official main. Individual practice stays in your BE folder; shared-task branches change only their agreed product paths, tests and evidence. Only reviewed, passing work reaches main. A maintainer merges; shared authentication, ownership and migration changes need direct maintainer review.
 
-Keep answer guidance, private grades and personal support records outside this public repo. A weekly review explains one failure, one trade-off and one next step, not a ranking of students.
+The owner/admin arranges collaborator access and required checks/approvals. Write access is not full admin access, and these written cohort rules do not configure GitHub protection by themselves. Do not claim protections are active before checking them. Do not force-push main or bypass a failed check.
+
+Preserve student authorship when merging assessed work. A non-author must reproduce a shared milestone before it is recorded complete, but that person need not be a preassigned partner. Keep incompatible API/schema choices out of main rather than leaving a later contributor to discover them.
+
+## Time and evidence
+
+The 30-minute shared slot remains inside the weekly budget. Keep contributions small by reusing tested practice; split or replan work that does not fit rather than silently adding homework or dropping required proof.
+
+Log actual owners, PRs, commands, results and reassignment notes. Assignment alone is not completion. A weekly review explains one failure, one trade-off and one next step, not a ranking of students. Keep answer guidance, grades and personal support records outside this public repo.
