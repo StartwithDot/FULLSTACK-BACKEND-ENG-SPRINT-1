@@ -18,7 +18,7 @@
           "minutes": 50,
           "path": "week-01/discovery/brief.md",
           "learn": "User stories, scope and a one-page context diagram",
-          "resources": ["http"],
+          "resources": ["brief"],
           "instructions": "Read the client story. Write the user, three useful actions, non-goals, five open questions and what a successful demo would show. Add a small Mermaid map of simulator, API, database and merchant interface. Keep implementation choices provisional.",
           "proof": "A peer can explain the same user and V1 boundary from your brief. The map labels the API as the data/security boundary.",
           "trap": "A list of technologies is not a client brief."
@@ -41,9 +41,9 @@
           "path": "week-01/review.md",
           "learn": "Diffs, branches, commits and pull requests",
           "resources": ["git", "review"],
-          "instructions": "Use a task branch, inspect git diff, make focused task-ID commits and open one weekly PR. Review an assigned peer's change and record its link. Before publication, use local branches and review the diff together; record the commit instead of inventing a PR URL.",
+          "instructions": "Use a task branch, inspect git diff, make focused task-ID commits and open one weekly PR. Review an assigned peer's change and record its link. Record real commit and PR links.",
           "proof": "Your author identity is correct, changed files stay in your folder, and the review explains one choice.",
-          "trap": "Run Git commands from the repository root, not C:\\Users\\josep."
+          "trap": "Run Git commands from the repository root, not your home directory."
         }
       ],
       "budget": {
@@ -91,7 +91,7 @@
           "minutes": 35,
           "path": "week-02/design/event-contract.md",
           "learn": "Runtime input, integer minor units, timestamps and non-goals",
-          "resources": ["types"],
+          "resources": ["contract"],
           "instructions": "Use docs/01-project-brief.md and fixtures/cases.json to specify required fields, bounds, allowed event kinds and the duplicate key. Explain why merchant identity will eventually come from authentication, not an arbitrary body field.",
           "proof": "Every fixture case has an expected accept/reject result and a reason. Money is expressed in integer paise, not floating point rupees.",
           "trap": "Sandbox event data is not authorization and this course does not process payments."
@@ -172,7 +172,7 @@
           "path": "week-04/api/app.ts",
           "learn": "HTTP methods, paths, headers, status, JSON and app factories",
           "resources": ["http", "fastify", "ftest"],
-          "instructions": "Copy the immutable fixtures/api-starter once into your week-04/api folder as described in docs/14-individual-app-wiring.md. Continue its exported createApp factory and separate server.ts listener. Add an in-memory GET /api/events returning a few synthetic records, send a request with curl.exe and add an app.inject test in app.test.ts. Run the app with npm.cmd run dev:student -- BE01, replacing BE01. Bind to loopback and retain this entry point in later weeks.",
+          "instructions": "Copy the immutable fixtures/api-starter once into your week-04/api folder as described in docs/12-application-wiring.md. Continue its exported createApp factory and separate server.ts listener. Add an in-memory GET /api/events returning a few synthetic records, send a request with curl.exe and add an app.inject test in app.test.ts. Run the app with npm.cmd run dev:student -- BE01, replacing BE01. Bind to loopback and retain this entry point in later weeks.",
           "proof": "An annotated exchange names method, URL, response status and JSON. The test runs without opening a network port.",
           "trap": "The in-memory lab is local and temporary. It has no authentication yet and must not be publicly exposed."
         },
@@ -193,7 +193,7 @@
           "minutes": 40,
           "path": "week-04/design/api-contract.md",
           "learn": "Request/response contracts and design trade-offs",
-          "resources": ["http"],
+          "resources": ["contract", "http"],
           "instructions": "Specify the initial POST/list/detail routes, field rules, error shape and the future owner filter. Draw the request path and name the limits of the in-memory version. Compare the plan with Week 3's relational model.",
           "proof": "A peer can name what belongs in HTTP, validation and persistence, and what is missing before public deployment.",
           "trap": "Do not invent queue, Rust service or microservice boundaries in Sprint 1."
@@ -245,7 +245,7 @@
           "minutes": 40,
           "path": "week-05/delivery/first-flow.md",
           "learn": "Reproduction, diagrams and restart limitations",
-          "resources": ["review"],
+          "resources": ["evidence"],
           "instructions": "Have a peer run the simulator -> API -> list flow. Record actual commands, one invalid request and what disappears after restart. Update the architecture with actual local ports.",
           "proof": "A person outside the build pair reproduces the flow and can explain the persistence gap.",
           "trap": "Do not claim durable acceptance or a production webhook service from this demonstration."
@@ -604,7 +604,7 @@
           "minutes": 40,
           "path": "week-12/quality/test-matrix.md",
           "learn": "Risk-based tests, explain-back and focused revision",
-          "resources": ["review"],
+          "resources": ["evidence"],
           "instructions": "Map each V1 behavior to a unit, HTTP, real-database or browser check. Identify one missing proof, add it or explain the remaining limit. Revisit a Week 2/3 concept from memory, then correct your explanation against the code.",
           "proof": "Every milestone behavior has a named check and your revision records a real correction.",
           "trap": "Coverage percentages and green starter tests do not prove the completed merchant features."
@@ -706,7 +706,7 @@
           "minutes": 45,
           "path": "week-14/delivery/clean-start-notes.md",
           "learn": "Setup instructions, fresh state and reproducibility",
-          "resources": ["review"],
+          "resources": ["setup"],
           "instructions": "Give a peer the repository and current runbook. Use a fresh named disposable database and npm ci. Watch them start API/UI, migrate, seed and send a fixture without verbal shortcuts. Record and fix confusing instructions.",
           "proof": "A non-author gets to the protected event screen using written commands; missing steps are corrected.",
           "trap": "Do not delete or reset a personal or shared database to make the rehearsal look clean."
@@ -736,7 +736,7 @@
           "minutes": 60,
           "path": "week-15/delivery/runbook.md",
           "learn": "Actual architecture, migrations, seed accounts, tests and limitations",
-          "resources": ["review"],
+          "resources": ["delivery"],
           "instructions": "Write the final native-Windows runbook with clone/install, local configuration, database creation, migration/seed, API/UI start, tests, common failures and shutdown. Include a diagram matching actual code and a short next-sprint boundary. Propose the shared root README update in the rotation PR.",
           "proof": "A stranger can find every command, secret variable and dependency; unfinished product work is named, not hidden.",
           "trap": "Do not describe Docker, queues, Rust, deployment or real payments as implemented in Sprint 1."
@@ -747,7 +747,7 @@
           "minutes": 35,
           "path": "week-15/delivery/demo.md",
           "learn": "User-focused demo and browser/API evidence",
-          "resources": ["http"],
+          "resources": ["contract"],
           "instructions": "Demonstrate login, one accepted fixture, invalid input, duplicate/conflicting ID, filtered/paged viewing, another merchant's rejection and logout. Explain one UI/API/DB request path and state the local-only and session-revocation limits.",
           "proof": "The demo shows negative cases as well as success, with no real money, credentials or customer data.",
           "trap": "A polished screen does not replace backend evidence."
@@ -758,7 +758,7 @@
           "minutes": 55,
           "path": "week-15/delivery/handover.md",
           "learn": "Clean-start proof, authorship and technical explanation",
-          "resources": ["git", "review"],
+          "resources": ["evidence", "git"],
           "instructions": "Have a non-author follow the final runbook and record commands/outcomes. Link your own core task commits/PRs and shared rotation contributions. Write two defensible resume statements about work you actually did and one limitation you can explain. Keep private grading outside this public repository.",
           "proof": "The final witness succeeds using the runbook, core tests pass, and individual contributions are attributable.",
           "trap": "Do not claim production ownership, Rust expertise or smart-contract work from this sprint."
@@ -898,7 +898,15 @@
       "GitHub reviews",
       "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests"
     ],
-    "actions": ["GitHub Actions", "https://docs.github.com/en/actions"]
+    "actions": ["GitHub Actions", "https://docs.github.com/en/actions"],
+    "brief": ["MerchantDesk client brief", "../docs/01-project-brief.md"],
+    "contract": [
+      "MerchantDesk API contract",
+      "../docs/04-api-and-security-contract.md"
+    ],
+    "evidence": ["Assessment and review", "../docs/10-assessment.md"],
+    "setup": ["Windows setup", "../docs/02-windows-setup.md"],
+    "delivery": ["Delivery documentation", "../shared/delivery/README.md"]
   },
   "students": [
     "BE01",

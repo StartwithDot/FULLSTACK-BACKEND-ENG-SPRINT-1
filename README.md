@@ -2,88 +2,60 @@
 
 **MerchantDesk: TypeScript and Web2 Application Foundations**
 
-15 weeks | 10 students | about 5 required hours weekly | Windows | free local tooling
+15 weeks | 10 students | about 5 hours weekly | Windows | free local tooling
 
-This is the cohort's learning repository. Everyone learns the same essential skills through one merchant application. TypeScript, backend development, SQL, client integration and engineering habits progress in parallel around product requirements. They are not sequential mini-courses or student-selectable specialisations.
+Build MerchantDesk, a merchant-side application for receiving and inspecting synthetic payment notifications. An operator signs in, submits sample events and views only their merchant's history. The backend validates input, persists records, handles duplicates and protects ownership. A small React interface makes the API usable.
+
+No real payments are processed. MerchantDesk is an event-recording application, not a payment gateway or accounting system. It becomes the destination for the Rust-based PayHook delivery service in a later sprint.
 
 ## Start here
 
-1. [Start Here](docs/00-START-HERE.md)
-2. [Client story and product boundary](docs/01-project-brief.md)
-3. [Windows setup](docs/02-windows-setup.md)
-4. [Student working guide](docs/03-student-guide.md)
-5. Your folder in [students/](students/README.md), then [Week 1](weeks/week-01.md)
+1. Read [Start Here](docs/00-START-HERE.md) and the [project brief](docs/01-project-brief.md).
+2. Complete the [Windows setup](docs/02-windows-setup.md) sections for Week 1.
+3. Read the [student guide](docs/03-student-guide.md) and find your folder in [students/](students/README.md).
+4. Open your current week's problem statement and complete the linked tasks.
 
-Official repository: [StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1](https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1).
+## How learning works
 
-For students: [connect the individual app across weeks](docs/14-individual-app-wiring.md). For collaborators: [publish changes to the official repository](docs/12-publish-to-github.md).
+Every student follows the same curriculum. A project requirement introduces a concept; students practise it individually, test the result and review a peer's work. A rotating pair promotes reviewed work into one shared application.
 
-## The product
+| Track                        | Focus                                                        |
+| ---------------------------- | ------------------------------------------------------------ |
+| T: TypeScript and JavaScript | Language foundations, types, functions and async behavior    |
+| B: Backend Development       | HTTP APIs, validation, authentication and safe responses     |
+| D: SQL and Persistence       | Data modelling, durable storage, transactions and uniqueness |
+| C: Client Integration        | API consumers and a small functional React interface         |
+| E: Engineering and Delivery  | Git, review, tests, diagnosis and handover                   |
 
-A merchant operator signs in, submits synthetic payment events and inspects their own event history. The backend validates input, persists it in PostgreSQL, handles repeated event identity, protects merchant ownership and supports bounded filtering/paging. A small React interface makes those capabilities usable.
+Tracks progress together as requirements arise. They are not separate courses or student specialisations. Frontend work supports the backend; there is no dedicated design course.
 
-No payments are processed. No real provider account, card data, money or cloud subscription is required.
+## Repository layout
 
-MerchantDesk is the Sprint 1 product and later merchant receiver for PayHook. The main PayHook reliability service begins in the Rust sprint; MerchantDesk continues as its destination and inspection application. Sprint 1 uses the direct local simulator, not an already-connected PayHook service. The [PayHook handoff](docs/13-payhook-handoff.md) defines the later delivery contract and separate service authentication without adding Sprint 1 tasks.
+| Folder      | Purpose                                             |
+| ----------- | --------------------------------------------------- |
+| `docs/`     | Project contract, setup and working guides          |
+| `weeks/`    | The 15 canonical weekly task files                  |
+| `students/` | Individual workspaces for BE01 through BE10         |
+| `shared/`   | The reviewed API, interface, database and simulator |
+| `fixtures/` | Synthetic inputs and copyable teaching scaffolds    |
+| `scripts/`  | Setup, test and curriculum-check tooling            |
+| `admin/`    | Mentor, maintenance and future-integration notes    |
 
-## Parallel tracks
+## Milestones
 
-| ID  | Track                     | Purpose                                                   |
-| --- | ------------------------- | --------------------------------------------------------- |
-| T   | TypeScript and JavaScript | Learn the language by handling event data.                |
-| B   | Backend Development       | Build HTTP boundaries, validation and authentication.     |
-| D   | SQL and Persistence       | Make data durable, relational and safe under repetition.  |
-| C   | Client Integration        | Consume the API and build a small useful React interface. |
-| E   | Engineering and Delivery  | Review, test, diagnose, document and hand over.           |
+| Week                   | Outcome                                     |
+| ---------------------- | ------------------------------------------- |
+| [1](weeks/week-01.md)  | Agreed brief and system context             |
+| [5](weeks/week-05.md)  | First simulator-to-API event flow           |
+| [6](weeks/week-06.md)  | Accepted events survive restart             |
+| [9](weeks/week-09.md)  | Authenticated, merchant-owned event access  |
+| [15](weeks/week-15.md) | Independently reproducible product handover |
 
-A week combines selected tracks. Dependencies still matter; React does not have to begin in Week 1. All core work is shared across the ten students.
+The [task index](docs/05-task-index.md) lists all 45 tasks. The [shared build plan](docs/08-shared-build-plan.md) connects each week to the product.
 
-## Repository zones
+## Run the starter
 
-```text
-docs/          shared reading, contracts, setup and working rules
-weeks/         15 canonical weekly task files
-students/      BE01 to BE10, each with 15 linked problem statements
-fixtures/      small synthetic inputs and supported teaching scaffolds
-shared/
-  api/         the single Fastify product implementation
-  web/         the small React merchant interface
-  database/    student-built final migrations and seed tooling
-  simulator/   student-built sandbox API consumer
-  delivery/    briefs, diagrams, rotation evidence and handover
-scripts/       curriculum, setup and test checks
-admin/         public mentor notes only, no answer keys or private grades
-```
-
-Individual practice is not the production application. The rotating pair promotes proven learning into one shared build. Everyone serves on three build rotations and reviews/witnesses other work.
-
-## Fifteen weeks at a glance
-
-| Week                   | Shared requirement                                                        | Tracks  |
-| ---------------------- | ------------------------------------------------------------------------- | ------- |
-| [1](weeks/week-01.md)  | Meet the merchant and make the first change (Agreed client brief)         | E, T    |
-| [2](weeks/week-02.md)  | Represent events and ask the first SQL questions                          | T, D, E |
-| [3](weeks/week-03.md)  | Functions, relational boundaries and first tests                          | T, D, E |
-| [4](weeks/week-04.md)  | Cross the HTTP boundary without losing the model                          | B, T, E |
-| [5](weeks/week-05.md)  | Receive one event end to end (First local event flow)                     | B, C, E |
-| [6](weeks/week-06.md)  | Make accepted events survive restart (Durable event flow)                 | D, B, E |
-| [7](weeks/week-07.md)  | Handle repetition and bound the list                                      | D, T, B |
-| [8](weeks/week-08.md)  | Authenticate a merchant operator                                          | B, E    |
-| [9](weeks/week-09.md)  | Enforce merchant ownership across every route (Protected merchant flow)   | D, B, C |
-| [10](weeks/week-10.md) | Build a small merchant interface while tightening responses               | C, B    |
-| [11](weeks/week-11.md) | Connect the interface to the protected backend                            | C, E    |
-| [12](weeks/week-12.md) | Consolidate correctness before adding polish                              | D, B, E |
-| [13](weeks/week-13.md) | Make failures visible and requests bounded                                | B, C, E |
-| [14](weeks/week-14.md) | Investigate, repair and rehearse a clean start                            | E, D    |
-| [15](weeks/week-15.md) | Demonstrate and hand over the merchant application (Independent handover) | E, C    |
-
-See the [task index](docs/05-task-index.md), [shared plan](docs/08-shared-build-plan.md), [assessment evidence](docs/10-assessment.md) and [scope/pacing decisions](docs/11-scope-and-continuation.md).
-
-## Supplied code and student work
-
-The starter already installs, type-checks, runs fast tests and builds the API/UI shells. The API supplies a loopback-only liveness route, not finished merchant features. The UI is a minimal starting screen. Fixtures and the password helper support learning, not a completed product to copy.
-
-Students implement the API, final migrations, auth, ownership, simulator, interface and final runbook at the named weeks. The starter checks do not imply those milestones are complete.
+From the repository root:
 
 ```powershell
 npm.cmd ci
@@ -91,14 +63,8 @@ npm.cmd run check
 npm.cmd run dev:api
 ```
 
-In a second terminal, from the same repository root:
-
-```powershell
-npm.cmd run dev:web
-```
-
-Open http://localhost:5173. API liveness is http://localhost:3000/health/live. PostgreSQL is not needed for these starter commands; add it in Week 2 for SQL practice.
+In a second terminal, run `npm.cmd run dev:web` and open http://localhost:5173. The supplied API exposes liveness only; students implement the merchant features through the weekly tasks. PostgreSQL is introduced in Week 2.
 
 ## Completion
 
-A non-author follows the final runbook from a clean checkout, migrates and seeds a fresh named local database, signs in, submits a fixture, observes invalid/duplicate/conflict cases, inspects only their merchant's events, logs out and runs the core tests. The handover includes honest limitations and attributable student contributions.
+A non-author can start from a clean checkout, migrate and seed a fresh course database, sign in, submit an event, demonstrate invalid/duplicate/conflict cases, inspect only their merchant's records and run the tests using the final runbook.

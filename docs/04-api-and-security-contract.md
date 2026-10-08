@@ -2,12 +2,6 @@
 
 This is the bounded Sprint 1 target. Students implement it at the relevant week; it is not a claim that the supplied shells already implement these routes.
 
-## Product and future service boundary
-
-MerchantDesk implements the operator API below during Sprint 1. PayHook is a separate reliability service built in the following Rust sprint. Its future receiver route, service credential, source-aware identity migration and acknowledgment semantics are defined in the [PayHook handoff](13-payhook-handoff.md).
-
-Do not use operator cookies or Origin headers as PayHook service authentication. Do not add the future integration endpoint to the current task count.
-
 ## Event body
 
 | Field             | Rule                                                      |
@@ -64,3 +58,7 @@ Development browser origin is http://localhost:5173. Vite proxies relative /api 
 Bind the API to loopback for this sprint. No public tunneling or port forwarding. Secrets/passwords/cookies/auth headers never appear in logs, client responses or public evidence.
 
 The references are [OWASP CSRF guidance](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) and [session guidance](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html). This is application-security foundations, not professional auditing certification.
+
+## Following-sprint integration
+
+PayHook will use a separate receiver endpoint and service credential, not operator cookies or Origin headers as authentication. The [program handoff](../admin/payhook-handoff.md) defines that future contract. It adds no Sprint 1 endpoints or tasks.

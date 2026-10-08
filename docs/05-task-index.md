@@ -51,5 +51,3 @@
 | [15](../weeks/week-15.md) | `E12.2` | Engineering and Delivery  | Complete the independent start and contribution record | `students/<student-id>/week-15/delivery/handover.md`               |
 
 Required proof and known traps appear immediately under each task. One focused task may need several files; one-file-only rules do not override normal TypeScript module/test needs.
-
-The machine-readable task map is [curriculum.json](../curriculum.json). [The consistency check](../scripts/check-curriculum.mjs) checks counts, IDs, budgets, links and student pointers.

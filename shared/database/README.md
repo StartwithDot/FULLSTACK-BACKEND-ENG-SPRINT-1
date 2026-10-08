@@ -1,6 +1,6 @@
 # Product migrations and seeds
 
-The final schema is built in Week 6; authentication seed tooling is added in Week 8. For individual apps, keep all forward migrations in the original week-06/database/migrations directory and follow the [wiring guide](../../docs/14-individual-app-wiring.md). The later source-aware PayHook migration is following-sprint work, not part of the current schema. fixtures/practice.sql is a separate teaching schema, not a production migration.
+The final schema is built in Week 6; authentication seed tooling is added in Week 8. For individual apps, keep all forward migrations in the original week-06/database/migrations directory and follow the [wiring guide](../../docs/12-application-wiring.md). fixtures/practice.sql is a separate teaching schema, not a production migration.
 
 Create migrations/001-events.sql here from the reviewed Week 6 work. Add numbered migrations without editing already-applied history. The supplied runner tracks versions and applies each pending batch in one transaction on one checked-out client. Inspect its tests rather than inventing all the plumbing. Run npm.cmd run db:migrate only after the Week 6 SQL exists and DATABASE_URL points to the dedicated product database. The product schema is merchantdesk.
 

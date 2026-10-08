@@ -4,7 +4,7 @@ Use PowerShell consistently. Commands below use `npm.cmd` to avoid PowerShell bl
 
 ## 1. Git and editor (Week 1)
 
-Install [Git for Windows](https://git-scm.com/downloads/win) and a free editor such as [VS Code](https://code.visualstudio.com/). A GitHub account is needed when the owner publishes the repo; local branches work before that.
+Install [Git for Windows](https://git-scm.com/downloads/win) and a free editor such as [VS Code](https://code.visualstudio.com/). Use a GitHub account for your fork and pull requests.
 
 ```powershell
 git --version
@@ -116,4 +116,4 @@ npm.cmd run check
 
 Use `npm.cmd run format` after editing and `npm.cmd run format:check` before a PR. The base check does not require PostgreSQL; the database job runs separately. Later shared product work must also pass its actual database tests.
 
-Installation/debugging time belongs inside the weekly budget. Ask with the command, exact error, OS and what you tried. The [troubleshooting guide](09-troubleshooting.md) covers common failures.
+Ask for setup help with the command, exact error, OS and what you tried. The [troubleshooting guide](09-troubleshooting.md) covers common failures.

@@ -10,8 +10,8 @@ export async function findTests(directory, database) {
     if (entry.isDirectory())
       files.push(...(await findTests(filename, database)));
     else if (
-      entry.name.endsWith('.test.ts') &&
-      entry.name.endsWith('.db.test.ts') === database
+      /\.test\.(?:ts|mjs)$/.test(entry.name) &&
+      /\.db\.test\.(?:ts|mjs)$/.test(entry.name) === database
     )
       files.push(filename);
   }

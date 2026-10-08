@@ -10,7 +10,7 @@ try {
   const file = path.resolve('students', student, 'week-04/api/server.ts');
   if (!existsSync(file))
     throw new Error(
-      'Create your Week 4 API shell first. See docs/14-individual-app-wiring.md.',
+      'Create your Week 4 API shell first. See docs/12-application-wiring.md.',
     );
   const child = spawn(process.execPath, ['--import', 'tsx', file], {
     stdio: 'inherit',

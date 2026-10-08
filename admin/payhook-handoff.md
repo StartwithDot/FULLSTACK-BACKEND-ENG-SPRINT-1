@@ -1,12 +1,26 @@
 # MerchantDesk and the PayHook handoff
 
+This is a maintainer-facing program design reference. Students complete the Sprint 1 brief and API contract; no future receiver implementation is required here.
+
+## Program progression
+
+| Sprint | Main learning                                                                                         | Application progression                                                                               |
+| ------ | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 1      | TypeScript Web2 application foundations                                                               | MerchantDesk: local merchant event API, database and small interface                                  |
+| 2      | Rust, Cargo, ownership/errors, Tokio, Actix Web and SQLx                                              | Build PayHook and connect its verified deliveries to MerchantDesk                                     |
+| 3      | Production engineering, Linux, Docker, CI, failure/recovery, Redis when justified and one cloud model | Strengthen PayHook retries, history and recovery; operate both applications with a free core run path |
+| 4      | Web3 fundamentals, Solana, Anchor, Rust and TS clients                                                | Extend the product through a clearly scoped sandbox chain integration                                 |
+| 5      | Solidity/EVM, Foundry, contract/client integration and security exercises                             | Add a scoped EVM capability and compare assumptions with Solana                                       |
+
+These later directions need their own detailed syllabuses. MerchantDesk and PayHook remain distinct applications; no blockchain features are added to Sprint 1.
+
 ## What Sprint 1 delivers
 
 MerchantDesk is the complete small merchant-side application for Sprint 1: an event API, PostgreSQL storage, operator login, merchant ownership, duplicate handling and a small inspection interface. The local simulator submits synthetic records directly through its operator API.
 
 PayHook is the main webhook reliability service introduced in the Rust sprint. It verifies provider webhooks, stores them and forwards deliveries to MerchantDesk. Later production work adds bounded retries, attempt history and recovery. MerchantDesk remains the destination and inspection application; it is not renamed into PayHook.
 
-Sprint 1 completes the [current API contract](04-api-and-security-contract.md). The future integration below is a documented handoff target, not another Sprint 1 task or an implemented starter endpoint.
+Sprint 1 completes the [current API contract](../docs/04-api-and-security-contract.md). The future integration below is a documented handoff target, not another Sprint 1 task or an implemented starter endpoint.
 
 ## Ownership of responsibilities
 

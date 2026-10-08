@@ -1,11 +1,21 @@
-# Public mentor notes
+# Maintainer and mentor notes
 
-This folder holds operating guidance, not private grades or solutions.
+Student instructions start at the root README and canonical week files. This directory holds material for running and maintaining the cohort.
 
-The weekly files, supported fixtures and compiling starter form the cohort starting environment. Final product features and migrations are student work, not missing prewritten answers.
+- [Publishing changes](publishing.md): collaborator remotes, review branches and GitHub checks.
+- [PayHook program handoff](payhook-handoff.md): following-sprint architecture and integration contract.
+- [Repository tooling](../scripts/README.md): setup, test and consistency commands.
 
-Before a week opens, post the same core goal to everyone, confirm the pair assignment and offer the bounded resource portions. During the week, help with concrete blockers inside the planned time budget. Review auth, ownership, conflict handling and migration safety directly.
+## Run the cohort
 
-No paid tool/account is required. Do not publish private learner identities, reports, credentials, answer keys or injected-failure instructions. A reversible failure can be introduced only in an explicitly disposable test environment.
+Confirm each week's build/review assignment. Review authentication, ownership, duplicate handling and migration safety directly. Support concrete blockers without removing core proofs. Keep private grades, answer keys, credentials and individual support records outside this public repository.
 
-Ask learners for actual time and the most confusing concept during the weekly review; record logistical adjustments privately. The course is designed around a safe planning budget, not a measured guarantee for every absolute beginner.
+## Maintain the curriculum
+
+The week files are the student-facing instructions. The root curriculum.json records their task metadata for automated checks; it is not another student syllabus. Update both when changing a task. Preserve published task IDs and keep student pointers and rotation logs aligned.
+
+Run npm.cmd run check for every change and npm.cmd run test:db for database-related work. The GitHub workflow exercises Windows/Linux starter checks and PostgreSQL tests; inspect the hosted run after publishing. Branch rules and access permissions are configured by the repository owner.
+
+## Curriculum references
+
+The learning model draws on [Data Sprint's blueprint](https://github.com/StartwithDot/Data-Sprint-1/blob/main/docs/curriculum-blueprint.md) and [Rust Backend Sprint's shared plan](https://github.com/jrk101/Rust-Backend-Sprint-1/blob/main/docs/11-shared-build-plan.md). This repository's tasks, product boundary and pacing are specific to MerchantDesk.

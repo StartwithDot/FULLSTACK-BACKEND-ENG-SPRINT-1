@@ -54,7 +54,7 @@ assert.equal(ids.size, 45);
 const official =
   'https://github.com/StartwithDot/FULLSTACK-BACKEND-ENG-SPRINT-1';
 const guide = readFileSync('docs/03-student-guide.md', 'utf8');
-const publication = readFileSync('docs/12-publish-to-github.md', 'utf8');
+const publication = readFileSync('admin/publishing.md', 'utf8');
 assert.ok(guide.includes(official + '.git'));
 assert.ok(
   guide.includes(
@@ -67,24 +67,28 @@ assert.ok(
     'https://github.com/jrk101/Backend-Engineering-Sprint-1',
   ),
 );
-const wiring = readFileSync('docs/14-individual-app-wiring.md', 'utf8');
+const wiring = readFileSync('docs/12-application-wiring.md', 'utf8');
 assert.ok(wiring.includes('week-04/api/app.ts'));
 assert.ok(wiring.includes('week-04/api/server.ts'));
 for (const week of data.weeks.filter((week) => week.number >= 4)) {
   const number = String(week.number).padStart(2, '0');
   assert.ok(
     readFileSync('weeks/week-' + number + '.md', 'utf8').includes(
-      '14-individual-app-wiring.md',
+      '12-application-wiring.md',
     ),
   );
 }
-const handoff = readFileSync('docs/13-payhook-handoff.md', 'utf8');
+const handoff = readFileSync('admin/payhook-handoff.md', 'utf8');
 assert.ok(handoff.includes('/integrations/payhook/events'));
 assert.ok(handoff.includes('Authorization: Bearer'));
 assert.ok(handoff.includes('following sprint'));
 const scripts = JSON.parse(readFileSync('package.json', 'utf8')).scripts;
 for (const command of ['dev:student', 'test:student', 'test:student:db'])
   assert.ok(scripts[command]);
+for (const command of Object.values(scripts)) {
+  for (const match of command.matchAll(/scripts\/[\w/-]+\.mjs/g))
+    assert.ok(existsSync(match[0]), 'Missing npm command helper: ' + match[0]);
+}
 
 function visit(directory) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {

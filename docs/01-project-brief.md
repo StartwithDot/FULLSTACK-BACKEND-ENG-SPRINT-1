@@ -12,7 +12,18 @@ The cohort is the engineering team. In Week 1 each student clarifies the user, o
 
 Build MerchantDesk: one TypeScript/Fastify API, one PostgreSQL database and one small React interface. Start as a modular application, not microservices.
 
-This sprint delivers the merchant-side application. The Rust sprint introduces PayHook as the main webhook reliability service, forwarding verified events into MerchantDesk. The [PayHook handoff contract](13-payhook-handoff.md) separates human login from later service credentials and defines the future delivery envelope. That receiver route is not extra Sprint 1 implementation work.
+## Application flow
+
+The local simulator sends a synthetic payment notification to the MerchantDesk API. The API validates it, stores it in PostgreSQL and returns the stored record or an error. A merchant operator uses the React interface to sign in and inspect their own records.
+
+- **Simulator:** supplies sample notifications; it does not process payments.
+- **MerchantDesk API:** owns validation, authentication and merchant access.
+- **PostgreSQL:** stores the accepted records and enforces relational constraints.
+- **React interface:** displays the API's results to the operator.
+
+The following Rust sprint adds PayHook as a separate delivery service. It sends verified notifications to MerchantDesk using service authentication, not the human operator's login. That integration is outside Sprint 1.
+
+## Required behavior
 
 Core user actions:
 
@@ -51,7 +62,7 @@ No mandatory Rust, Redis, Docker, AWS, queues, Terraform, blockchain, Next.js, a
 
 ## Input material
 
-[Event fixtures](../fixtures/events.json), [case matrix](../fixtures/cases.json), [practice SQL](../fixtures/practice.sql) and [fixture guide](../fixtures/README.md) are available before their tasks need them. No live external dataset or account is needed to complete the course.
+The [fixture guide](../fixtures/README.md) describes the supplied event bodies, validation cases, practice SQL and scaffolds. No live external dataset or account is needed.
 
 ## Handover
 

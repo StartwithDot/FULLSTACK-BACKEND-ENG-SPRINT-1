@@ -2,7 +2,7 @@
 
 Complete every essential skill yourself. Mistakes here are practice; the single shared product lives in [shared/](../../shared/README.md).
 
-Open the current week's problem statement. It links to the canonical instructions, so the cohort has one consistent task set. Keep code, notes and evidence inside your own BE09 folder. From Week 4 onward, keep the same API entry point and wire later modules into it using the [individual app guide](../../docs/14-individual-app-wiring.md). Later tasks may deliberately continue earlier labs.
+Open the current week's problem statement. It links to the canonical instructions, so the cohort has one consistent task set. Keep code, notes and evidence inside your own BE09 folder. From Week 4 onward, keep the same API entry point and wire later modules into it using the [individual app guide](../../docs/12-application-wiring.md). Later tasks may deliberately continue earlier labs.
 
 - [Week 1](week-01/problem_statement.md): Meet the merchant and make the first change
 - [Week 2](week-02/problem_statement.md): Represent events and ask the first SQL questions
